@@ -1,5 +1,25 @@
-# Template for wedding website
+Thanks for downloading this theme!
 
-Template for a wedding website based on the Agency theme by Bootstrap. Single landing page with sections for Events, Venue, Travel, Where to Stay, Things to Do, Our Story, Bridal Party, FAQ, and Contact. Includes pages for English and French.
+## Other Useful Links
 
-[![Demo](https://img.shields.io/badge/-View%20Demo%20Website-f8d56f?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADDUlEQVRYR7XXWehuYxQG8N+R2YUkpFyYFZEhU5IShzKV6USGMhZChMxlijKLEAmROqdjKLPi4mQmRGTKUDLkwnTMQ4/W1utzzr9v//e2br6vd1jrWetd61lrzzGu7Ir5uBunNqovxQk4DA+3JueMaH8ZvIf1S+fOWISt8Api6zOsi187u2MC2ATvNA5djAtwFi5v1rfBq2MCiEc/4hd8ilVK+TG4HfNwX639jPUqAqvig6ER2B7P4AfEs4A5Dq/hKvxRoT8ZOXsH3qwIrI65QwE8hj3Ku5tw4hQ5dQXOrHOLhgL4EmuUsuexY/1fFrtjw0rMp/Bb7T2J3er/4qEA7sGhpaxLuo3wADZtovE29q8kjfeJQuTBoQCWx4FYHGVYEW+U55Ov8TE2x3fYG6uFM4YCmDSSBLxlhjw4Ddf8X0S0HF4o4lkahvDElkg5/i1jRWBl3Iv9pqiCx3Ewvh0TwA04aQrj3ZHwwVFjAgi1hvOnlXcR6h7tCdLtzpnWOq7ruuVYORDiSeM5GmtWKV6PlyoyoeKt8TXuxPnVO5YYgSTSXci7ntd4dSMOwQF4uoe3Mx6djECI5ROshT+rZEIsu1TTibL3sXHtD8YxCWBbvNhoPQNX4jKc3ayHbgNksHQA0jS+QSLwYf1G+UFYgGNxa1n7Husgtb8CPhqCIgDSmR7FV5UoW+BIPIu8eyTj1unIXqg2o9XLWKmep41aLzwB8Bx2qFsZndpQL03ZzTi+Nh/BXr2sNocD4KcKZZZDk3vWfkprbtPTn8DvtRePky+Rz7H2EAAPYZ9SkDBfjSTZ/disUfx6cX3a6iU4t/ZSsnmyWUkikB6enh6SSC5kqEzpdeN1q/itypOM1fvW3YXtmN0XxZKY8BRcO4OieBuvR5FJACmrNJZ2nJo0lJ6/U5MPg4C0ADKnp+a7gXEmxcmPfGZlFBskLYCE9fAe2v7paD3u/OdoCyDUukEPZSGirhR7XPv30RZA36nmIlw4a8t1sQWQBIzSI2pkTjIGVD6ztkN6esbqL3BbcUFHTLPG8RcdIZPRMh/B2wAAAABJRU5ErkJggg==)](https://alicelepissier.com/wedding-template/)
+**ThemeWagon** is a great source for downloading free HTML templates built with the latest technology.
+
+To download free templates, follow this link: https://themewagon.com/theme_tag/free/
+
+Besides that, you can buy our premium templates for making your web development experience unforgettable.
+
+Visit the store from here: https://themewagon.com/theme-categories/premium-templates/
+
+Alternatively, here's our top most trending and selling items:
+
+* [**Sparrow**](https://themewagon.com/themes/sparrow/) - A multipurpose template made with Bootstrap 4.1 and world's finest animation.
+* [**Posh**](https://themewagon.com/themes/posh-html5-bootstrap-4-template/) - Bootstrap 4 template with a myriad number of ready-to-deploy sections. 
+* [**Elixir**](https://themewagon.com/themes/elixir-elegant-html5-bootstrap-template-consultancy-agency-website/) - Bootstrap 4 agency template. Best for smooth animated scrolling. 
+* [**Freya**](https://themewagon.com/themes/bootstrap-4-premium-interior-design-template-freya/) - Interior design template made with Bootstrap 4. 
+* [**Reign Pro**](https://themewagon.com/themes/reign-pro-premium-corporate-agency-html5-template/) - A corporate template with a visually unique design scheme. 
+* [**Boots4**](https://themewagon.com/themes/first-ever-bootstrap-4-template/) - One of the first Bootstrap 4 templates ever made on earth. 
+* [**Hideaway**](https://themewagon.com/themes/hideaway/) - A template for resorts. Built with Bootstrap 4. 
+* [**Baikal**](https://themewagon.com/themes/bootstrap-4-startup-small-business-website-template/) - A smart Bootstrap template for start-up. 
+* [**Mega Discount**](https://themewagon.com/themes/mega-discount-bundle/) - A bundle of 26 HTML5 templates; best value for your money. 
+
+
