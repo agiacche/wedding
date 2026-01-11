@@ -1888,3 +1888,84 @@ form label {
   display: block;
   margin: 0 auto;
 }
+
+/* --- Fix floats inside event-wrap so .event-col stays 2 columns --- */
+#fh5co-event .event-wrap::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* --- Equal height columns (desktop/tablet) --- */
+@media (min-width: 768px) {
+  #fh5co-event .equal-height-row {
+    display: flex;
+    align-items: stretch; /* makes both columns same height */
+  }
+
+  /* Bootstrap 3 columns are floats; allow flex to manage sizing */
+  #fh5co-event .equal-height-row > [class*="col-"] {
+    float: none;
+    display: flex;          /* so the card can stretch */
+    flex-direction: column;
+  }
+
+  /* Make the card fill the column height */
+  #fh5co-event .equal-height-row .event-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Map: keep title centered; center the map area between title line and bottom */
+  #fh5co-event .event-wrap--map .map-body {
+    flex: 1;                 /* take remaining space after the title */
+    display: flex;
+    align-items: center;     /* vertical centering of iframe */
+  }
+
+  #fh5co-event .event-wrap--map .event-map {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;       /* so it looks good even if text box is short */
+    border: 0;
+    border-radius: 10px;
+  }
+}
+
+/* Two-column layout inside Event box */
+#fh5co-event .event-cols {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+#fh5co-event .event-col {
+  width: 50%;
+}
+
+/* Keep icons and text aligned nicely */
+#fh5co-event .event-col i {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Mobile: keep normal stacking */
+@media (max-width: 767px) {
+  #fh5co-event .event-map {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    border-radius: 10px;
+  }
+}
+
+/* Make the "info" and "gift" sections behave like other FH5CO sections */
+#fh5co-info .fh5co-heading,
+#fh5co-gift .fh5co-heading {
+  margin-bottom: 30px; /* same style as #fh5co-started */
+}
+
+#fh5co-info p:last-child,
+#fh5co-gift p:last-child {
+  margin-bottom: 0; /* avoids extra bottom space inside the heading block */
+}
