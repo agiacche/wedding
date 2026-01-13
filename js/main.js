@@ -108,10 +108,10 @@
 							}
 
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						},  k * 100, 'easeInOutExpo' );
 					});
 					
-				}, 100);
+				}, 80);
 				
 			}
 
@@ -230,3 +230,45 @@
 
 
 }());
+
+// --- Info modals (open/close) ---
+(function(){
+  function openModal(id){
+    var modal = document.getElementById(id);
+    if(!modal) return;
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal(modal){
+    if(!modal) return;
+
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  // Open on click
+  document.addEventListener('click', function(e){
+    var opener = e.target.closest('.info-opener');
+    if(opener){
+      openModal(opener.getAttribute('data-modal'));
+      return;
+    }
+
+    // Close on overlay or close button
+    if(e.target && e.target.getAttribute('data-close') === 'true'){
+      closeModal(e.target.closest('.fh5co-modal'));
+    }
+  });
+
+  // ESC closes
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var modal = document.querySelector('.fh5co-modal.is-open');
+      if(modal) closeModal(modal);
+    }
+  });
+})();

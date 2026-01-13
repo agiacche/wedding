@@ -1,31 +1,33 @@
-// language switcher
+// language switcher (toggle)
 
-$(document).ready(function() {
+$(document).ready(function () {
   let currentLang = 'it'; // default
 
   function switchLang(lang) {
-    $('[data-lang]').each(function() {
-      if ($(this).attr('data-lang') === lang) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
+    $('[data-lang]').each(function () {
+      $(this).toggle($(this).attr('data-lang') === lang);
     });
-    $('#en-it').text(lang === 'en' ? 'IT' : 'EN');
+
+    // checked = EN
+    $('#en-it').prop('checked', lang === 'en');
     currentLang = lang;
   }
+
   switchLang(currentLang);
-  $('#en-it').click(function() {
-    const newLang = currentLang === 'en' ? 'it' : 'en';
+
+  // When toggle changes
+  $('#en-it').on('change', function () {
+    const newLang = this.checked ? 'en' : 'it';
     switchLang(newLang);
   });
 });
 
-const langButton = document.getElementById('en-it');
+// Scroll behaviour (apply "active" to wrapper)
+const langButton = document.querySelector('.lang-toggle-wrap');
+langButton.classList.add('active');
+
 window.addEventListener('scroll', () => {
   if (window.scrollY > 100) {
     langButton.classList.add('active');
-  } else {
-    langButton.classList.remove('active');
   }
 });
