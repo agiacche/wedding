@@ -4,6 +4,11 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+	<!-- =========================================================
+	     HEAD / META
+	     - Page title and SEO/social meta tags (OpenGraph + Twitter)
+	     - Mobile viewport and iOS/Android auto-detection disabling
+	     ========================================================= -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Alessandro &amp; Silvia</title>
@@ -13,20 +18,33 @@
 
 	<meta property="og:title" content="Alessandro &amp; Silvia wedding"/>
 	<meta property="og:image" content="images/AS.jpg"/>
-	<meta property="og:url" content="https://yourwebsite.com"/>
+	<meta property="og:url" content="https://agiacche.github.io/wedding/"/>
 	<meta property="og:site_name" content="Alessandro &amp; Silvia"/>
 	<meta property="og:description" content="Join us in celebrating our special day!"/>
 	<meta name="twitter:title" content="Alessandro &amp; Silvia wedding" />
 	<meta name="twitter:image" content="images/AS.jpg" />
-	<meta name="twitter:url" content="https://yourwebsite.com" />
+	<meta name="twitter:url" content="https://agiacche.github.io/wedding/" />
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
 
+	<!-- =========================================================
+	     FONTS
+	     - Work Sans: main UI font
+	     - Sacramento: script font used for titles (e.g. buttons/headings)
+	     ========================================================= -->
 	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 
+	<!-- =========================================================
+	     CSS / LIBRARIES
+	     - Font Awesome: info icon in the “info-opener” buttons
+	     - animate.css / icomoon / bootstrap: template dependencies
+	     - magnific popup: lightbox for galleries + hidden video
+	     - owl carousel: template dependency (used/expected by main.js)
+	     - style.css: main theme stylesheet (custom tweaks live there)
+	     ========================================================= -->
 	<!-- font-awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-	/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -40,73 +58,129 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
+
+	<!-- =========================================================
+	     JS (HEAD)
+	     - Modernizr: template utility for feature detection
+	     ========================================================= -->
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+
+	<!-- =========================================================
+	     MODALS: display toggling helper
+	     - Modals exist in HTML, but are shown/hidden via .is-open
+	     - This ensures “closed = display:none”, “open = display:block”
+	     ========================================================= -->
+	<style>
+	  .fh5co-modal{ display:none !important; }
+	  .fh5co-modal.is-open{ display:block !important; }
+	</style>
 
 	</head>
+	<body>
 
+	<!-- =========================================================
+	     PASSWORD GATE (overlay)
+	     - Full-screen overlay shown before the website is accessible
+	     - Controlled by js/password-gate.js
+	     ========================================================= -->
+	<div id="password-gate" aria-hidden="true">
+	  <div class="password-box" role="dialog" aria-label="Password">
+
+	    <h2>Alessandro &amp; Silvia</h2>
+
+	    <p class="password-text">
+	      <span class="pw-line pw-line--en">Please enter password</span>
+	      <span class="pw-line pw-line--it">Inserire password</span>
+	    </p>
+
+	    <input
+	      type="password"
+	      id="password-input"
+	      placeholder="Password"
+	      autocomplete="off"
+	      inputmode="text"
+	    >
+
+	    <button id="password-submit" type="button">
+			<span class="pw-line">Enter / Entra</span>
+		</button>
+
+	    <p class="password-error">
+	      <span class="pw-line pw-line--en">Wrong password</span>
+	      <span class="pw-line pw-line--it">Password errata</span>
+	    </p>
+
+	  </div>
+	</div>
+
+	<!-- =========================================================
+	     INFO MODALS (Cities / Food / Nature)
+	     - Each modal contains EN + IT content (using .lang-content)
+	     - Opened by clicking a button with data-modal="modal-..."
+	     - Closed by clicking overlay / close button / ESC
+	     - Controlled by the “info modals” JS (in your JS files)
+	     ========================================================= -->
+
+	<!-- CITIES MODAL -->
 	<div class="fh5co-modal" id="modal-cities" aria-hidden="true" role="dialog" aria-label="Cities">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
 	  <div class="fh5co-modal__panel" role="document">
-	    <button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
+		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
-	    <!-- EN -->
-	    <div class="lang-content" data-lang="en">
-	      <h3 class="fh5co-modal__title">Cities &amp; towns</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>Udine</strong>
-	          <p>Elegant yet lively, its historic centre is perfect for a stroll. Don’t miss the castle and Piazza Libertà. Stop at one of the many <em>osterie</em> for a great glass of wine.</p>
-	          <a href="https://www.turismofvg.it/en/udine?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Trieste</strong>
-	          <p>Set on the sea and shaped by different cultures, Trieste is fascinating and truly unique. Don’t miss: Piazza Unità d’Italia, the waterfront, and Miramare Castle.</p>
-	          <a href="https://www.turismofvg.it/en/trieste?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Cividale del Friuli</strong>
-	          <p>A UNESCO World Heritage site, rich in Lombard history. Perfect for a relaxed stroll combining culture, nature, and excellent little restaurants.</p>
-	          <a href="https://www.turismofvg.it/en/cividale-del-friuli?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Venice</strong>
-	          <p>Technically outside of Friuli-Venezia Giulia, but just over an hour away, Venice needs no introduction: wandering through its alleys, canals and historic palaces is always unforgettable.</p>
-	          <a href="https://www.italia.it/en/veneto/venice" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- EN -->
+		<div class="lang-content" data-lang="en">
+		  <h3 class="fh5co-modal__title">Cities &amp; towns</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>Udine</strong>
+			  <p>Elegant yet lively, its historic centre is perfect for a stroll. Don’t miss the castle and Piazza Libertà. Stop at one of the many <em>osterie</em> for a great glass of wine.</p>
+			  <a href="https://www.turismofvg.it/en/udine?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Trieste</strong>
+			  <p>Set on the sea and shaped by different cultures, Trieste is fascinating and truly unique. Don’t miss: Piazza Unità d’Italia, the waterfront, and Miramare Castle.</p>
+			  <a href="https://www.turismofvg.it/en/trieste?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Cividale del Friuli</strong>
+			  <p>A UNESCO World Heritage site, rich in Lombard history. Perfect for a relaxed stroll combining culture, nature, and excellent little restaurants.</p>
+			  <a href="https://www.turismofvg.it/en/cividale-del-friuli?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Venice</strong>
+			  <p>Technically outside of Friuli-Venezia Giulia, but just over an hour away, Venice needs no introduction: wandering through its alleys, canals and historic palaces is always unforgettable.</p>
+			  <a href="https://www.italia.it/en/veneto/venice" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+		  </ul>
+		</div>
 
-	    <!-- IT -->
-	    <div class="lang-content" data-lang="it">
-	      <h3 class="fh5co-modal__title">Città &amp; borghi</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>Udine</strong>
-	          <p>Elegante ma vivace, il suo centro storico è perfetto per una passeggiata. Da non perdere: il Castello di Udine e Piazza Libertà. Fermatevi in una delle tante osterie per un buon bicchiere di vino.</p>
-	          <a href="https://www.turismofvg.it/it/udine?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Trieste</strong>
-	          <p>Affacciata sul mare e sospesa tra culture diverse, Trieste è una città affascinante e unica. Da non perdere: Piazza Unità d’Italia, il lungomare e il Castello di Miramare.</p>
-	          <a href="https://www.turismofvg.it/it/trieste?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Cividale del Friuli</strong>
-	          <p>Patrimonio UNESCO, Cividale è una cittadina ricca di storia longobarda, perfetta per una passeggiata tranquilla tra cultura, natura e ottimi ristorantini tipici.</p>
-	          <a href="https://www.turismofvg.it/it/cividale-del-friuli?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Venezia</strong>
-	          <p>Tecnicamente fuori dai confini regionali, ma a poco più di un’ora di distanza, Venezia non ha bisogno di presentazioni: una gita tra calli, canali e palazzi storici è sempre un’esperienza indimenticabile.</p>
-	          <a href="https://www.italia.it/it/veneto/venezia" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- IT -->
+		<div class="lang-content" data-lang="it">
+		  <h3 class="fh5co-modal__title">Città &amp; borghi</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>Udine</strong>
+			  <p>Elegante ma vivace, il suo centro storico è perfetto per una passeggiata. Da non perdere: il Castello di Udine e Piazza Libertà. Fermatevi in una delle tante osterie per un buon bicchiere di vino.</p>
+			  <a href="https://www.turismofvg.it/it/udine?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Trieste</strong>
+			  <p>Affacciata sul mare e sospesa tra culture diverse, Trieste è una città affascinante e unica. Da non perdere: Piazza Unità d’Italia, il lungomare e il Castello di Miramare.</p>
+			  <a href="https://www.turismofvg.it/it/trieste?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Cividale del Friuli</strong>
+			  <p>Patrimonio UNESCO, Cividale è una cittadina ricca di storia longobarda, perfetta per una passeggiata tranquilla tra cultura, natura e ottimi ristorantini tipici.</p>
+			  <a href="https://www.turismofvg.it/it/cividale-del-friuli?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Venezia</strong>
+			  <p>Tecnicamente fuori dai confini regionali, ma a poco più di un’ora di distanza, Venezia non ha bisogno di presentazioni: una gita tra calli, canali e palazzi storici è sempre un’esperienza indimenticabile.</p>
+			  <a href="https://www.italia.it/it/veneto/venezia" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+		  </ul>
+		</div>
 
 	  </div>
 	</div>
@@ -115,183 +189,167 @@
 	<div class="fh5co-modal" id="modal-food" aria-hidden="true" role="dialog" aria-label="Food">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
 	  <div class="fh5co-modal__panel" role="document">
-	    <button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
+		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
-	    <!-- EN -->
-	    <div class="lang-content" data-lang="en">
-	      <h3 class="fh5co-modal__title">Food, wine &amp; shopping</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>San Daniele del Friuli</strong>
-	          <p>Famous worldwide for the San Daniele ham, this town ia a must-stop for food lovers. Great restaurants and beautiful views over Friuli’s hills.</p>
-	          <a href="https://www.turismofvg.it/en/san-daniele-del-friuli?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Carnia</strong>
-	          <p>A mountainous area in the heart of Friuli, full of traditional villages. Try one of the region’s signature dishes: <em>frico</em>, a crispy “cake” of Montasio cheese and potatoes (sometimes onions too). Simple and utterly irresistible.</p>
-	          <a href="https://www.turismofvg.it/en/carnia?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Collio wine region</strong>
-	          <p>One of Italy’s most renowned wine regions, set among vineyards, wineries, and gently rolling hills. Perfect for a tasting experience that ends with the opportunity to take home your favorite wine.</p>
-	          <a href="https://www.turismofvg.it/en/gorizia-collio-and-monfalcone?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Shopping</strong>
-	          <p>If you’re in the mood for shopping between a good lunch and a glass of wine, you can browse the charming local shops or visit Palmanova Designer Outlet.</p>
-	          <a href="https://www.palmanovadesignervillage.com/en/" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- EN -->
+		<div class="lang-content" data-lang="en">
+		  <h3 class="fh5co-modal__title">Food, wine &amp; shopping</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>San Daniele del Friuli</strong>
+			  <p>Famous worldwide for the San Daniele ham, this town is a must-stop for food lovers. Great restaurants and beautiful views over Friuli’s hills.</p>
+			  <a href="https://www.turismofvg.it/en/san-daniele-del-friuli?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Carnia</strong>
+			  <p>A mountainous area in the heart of Friuli, full of traditional villages. Try one of the region’s signature dishes: <em>frico</em>, a crispy “cake” of Montasio cheese and potatoes (sometimes onions too). Simple and utterly irresistible.</p>
+			  <a href="https://www.turismofvg.it/en/carnia?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Collio wine region</strong>
+			  <p>One of Italy’s most renowned wine regions, set among vineyards, wineries, and gently rolling hills. Perfect for a tasting experience that ends with the opportunity to take home your favorite wine.</p>
+			  <a href="https://www.turismofvg.it/en/gorizia-collio-and-monfalcone?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Shopping</strong>
+			  <p>If you’re in the mood for shopping between a good lunch and a glass of wine, you can browse the charming local shops or visit Palmanova Designer Outlet.</p>
+			  <a href="https://www.palmanovadesignervillage.com/en/" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+		  </ul>
+		</div>
 
-	    <!-- IT -->
-	    <div class="lang-content" data-lang="it">
-	      <h3 class="fh5co-modal__title">Cibo, vino &amp; shopping</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>San Daniele del Friuli</strong>
-	          <p>Famosa in tutto il mondo per il Prosciutto di San Daniele, è una tappa obbligata per gli amanti della buona cucina. Ottimi ristoranti e splendide viste sulle colline friulane.</p>
-	          <a href="https://www.turismofvg.it/it/san-daniele-del-friuli?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Carnia</strong>
-	          <p>Zona montuosa nel cuore del Friuli, piena di borghi tradizionali. Qui potrete assaggiare uno dei piatti simbolo della regione: il frico, una “torta” croccante di formaggio Montasio e patate (a volte anche cipolla), semplice ma irresistibile.</p>
-	          <a href="https://www.turismofvg.it/it/carnia?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Collio Friulano</strong>
-	          <p>Una delle zone vinicole più rinomate d’Italia, tra vigneti, cantine e colline. Perfetta per un’esperienza di degustazione che si conclude con la possibilità di portare a casa il vostro vino preferito.</p>
-	          <a href="https://www.turismofvg.it/it/gorizia-collio-e-monfalcone?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Shopping</strong>
-	          <p>Se tra un bicchiere di vino e un buon pranzo vi viene voglia di shopping, potete curiosare tra i vari negozietti cittadini oppure visitare il Palmanova Designer Outlet.</p>
-	          <a href="https://www.palmanovadesignervillage.com/" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- IT -->
+		<div class="lang-content" data-lang="it">
+		  <h3 class="fh5co-modal__title">Cibo, vino &amp; shopping</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>San Daniele del Friuli</strong>
+			  <p>Famosa in tutto il mondo per il Prosciutto di San Daniele, è una tappa obbligata per gli amanti della buona cucina. Ottimi ristoranti e splendide viste sulle colline friulane.</p>
+			  <a href="https://www.turismofvg.it/it/san-daniele-del-friuli?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Carnia</strong>
+			  <p>Zona montuosa nel cuore del Friuli, piena di borghi tradizionali. Qui potrete assaggiare uno dei piatti simbolo della regione: il frico, una “torta” croccante di formaggio Montasio e patate (a volte anche cipolla), semplice ma irresistibile.</p>
+			  <a href="https://www.turismofvg.it/it/carnia?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Collio Friulano</strong>
+			  <p>Una delle zone vinicole più rinomate d’Italia, tra vigneti, cantine e colline. Perfetta per un’esperienza di degustazione che si conclude con la possibilità di portare a casa il vostro vino preferito.</p>
+			  <a href="https://www.turismofvg.it/it/gorizia-collio-e-monfalcone?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Shopping</strong>
+			  <p>Se tra un bicchiere di vino e un buon pranzo vi viene voglia di shopping, potete curiosare tra i vari negozietti cittadini oppure visitare il Palmanova Designer Outlet.</p>
+			  <a href="https://www.palmanovadesignervillage.com/" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+		  </ul>
+		</div>
 
 	  </div>
 	</div>
-
 
 	<!-- NATURE MODAL -->
 	<div class="fh5co-modal" id="modal-nature" aria-hidden="true" role="dialog" aria-label="Nature">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
 	  <div class="fh5co-modal__panel" role="document">
-	    <button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
+		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
-	    <!-- EN -->
-	    <div class="lang-content" data-lang="en">
-	      <h3 class="fh5co-modal__title">Nature &amp; mountains</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>Fusine Lakes</strong>
-	          <p>Two stunning alpine lakes surrounded by forests and dramatic peaks, perfect for a relaxing walk immersed in nature and a truly fairytale-like alpine landscape.</p>
-	          <a href="https://www.turismofvg.it/en/mountain365/fusine-lakes?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Montasio Plateau</strong>
-	          <p>Wide high-altitude pastures at the foot of the Jôf di Montasio massif. Perfect for scenic walks among mountain huts, ibexes and pristine nature, with spectacular views over the Julian Alps and the charming Bivacco Vuerich.</p>
-	          <a href="https://www.turismofvg.it/en/active/cima-di-terrarossa-al-montasio-in-the-realm-of-ibexes?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Campanile di Val Montanaia</strong>
-	          <p>One of the symbols of the Friulian Dolomites: an impressive rock spire and an unforgettable destination for those who love authentic mountains.</p>
-	          <a href="https://www.turismofvg.it/en/active/campanile-di-val-montanaia-and-bivacco-perugini?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	        <li>
-	          <strong>Pal Piccolo</strong>
-	          <p>A fascinating area combining history and nature on the Austrian border, with panoramic trails, World War I sites, and beautiful alpine lakes.</p>
-	          <a href="https://www.turismofvg.it/en/outdoor/pal-piccolo-and-freikofel-ring" target="_blank" rel="noopener noreferrer">Open link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- EN -->
+		<div class="lang-content" data-lang="en">
+		  <h3 class="fh5co-modal__title">Nature &amp; mountains</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>Fusine Lakes</strong>
+			  <p>Two stunning alpine lakes surrounded by forests and dramatic peaks, perfect for a relaxing walk immersed in nature and a truly fairytale-like alpine landscape.</p>
+			  <a href="https://www.turismofvg.it/en/mountain365/fusine-lakes?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Montasio Plateau</strong>
+			  <p>Wide high-altitude pastures at the foot of the Jôf di Montasio massif. Perfect for scenic walks among mountain huts, ibexes and pristine nature, with spectacular views over the Julian Alps and the charming Bivacco Vuerich.</p>
+			  <a href="https://www.turismofvg.it/en/active/cima-di-terrarossa-al-montasio-in-the-realm-of-ibexes?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Campanile di Val Montanaia</strong>
+			  <p>One of the symbols of the Friulian Dolomites: an impressive rock spire and an unforgettable destination for those who love authentic mountains.</p>
+			  <a href="https://www.turismofvg.it/en/active/campanile-di-val-montanaia-and-bivacco-perugini?LangSetCMS=en" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+			<li>
+			  <strong>Pal Piccolo</strong>
+			  <p>A fascinating area combining history and nature on the Austrian border, with panoramic trails, World War I sites, and beautiful alpine lakes.</p>
+			  <a href="https://www.turismofvg.it/en/outdoor/pal-piccolo-and-freikofel-ring" target="_blank" rel="noopener noreferrer">Open link</a>
+			</li>
+		  </ul>
+		</div>
 
-	    <!-- IT -->
-	    <div class="lang-content" data-lang="it">
-	      <h3 class="fh5co-modal__title">Natura &amp; montagna</h3>
-	      <ul class="fh5co-modal__list">
-	        <li>
-	          <strong>Laghi di Fusine</strong>
-	          <p>Due laghi alpini di rara bellezza, circondati da boschi e pareti rocciose, perfetti per una camminata rilassante o una gita immersi in un paesaggio fiabesco.</p>
-	          <a href="https://www.turismofvg.it/it/montagna365/lago-di-fusine?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Altopiano del Montasio</strong>
-	          <p>Ampi pascoli d’alta quota ai piedi del massiccio del Jôf di Montasio, perfetti per passeggiate panoramiche tra malghe, stambecchi e natura incontaminata, con splendide viste sulle Alpi Giulie e il caratteristico Bivacco Vuerich.</p>
-	          <a href="https://www.turismofvg.it/it/active/la-cima-di-terrarossa-al-montasio-nel-regno-degli-stambecchi?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Campanile di Val Montanaia</strong>
-	          <p>Uno dei simboli delle Dolomiti Friulane: un’imponente guglia di roccia, meta di escursioni indimenticabili per chi ama la montagna autentica.</p>
-	          <a href="https://www.turismofvg.it/it/active/campanile-di-val-montanaia-e-bivacco-perugini?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	        <li>
-	          <strong>Pal Piccolo</strong>
-	          <p>Tra storia e natura, un’area di grande fascino al confine con l’Austria, con percorsi panoramici, testimonianze della Grande Guerra e magnifici laghi alpini.</p>
-	          <a href="https://www.turismofvg.it/it/outdoor/anello-del-pal-piccolo-e-freikofel?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
-	        </li>
-	      </ul>
-	    </div>
+		<!-- IT -->
+		<div class="lang-content" data-lang="it">
+		  <h3 class="fh5co-modal__title">Natura &amp; montagna</h3>
+		  <ul class="fh5co-modal__list">
+			<li>
+			  <strong>Laghi di Fusine</strong>
+			  <p>Due laghi alpini di rara bellezza, circondati da boschi e pareti rocciose, perfetti per una camminata rilassante o una gita immersi in un paesaggio fiabesco.</p>
+			  <a href="https://www.turismofvg.it/it/montagna365/lago-di-fusine?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Altopiano del Montasio</strong>
+			  <p>Ampi pascoli d’alta quota ai piedi del massiccio del Jôf di Montasio, perfetti per passeggiate panoramiche tra malghe, stambecchi e natura incontaminata, con splendide viste sulle Alpi Giulie e il caratteristico Bivacco Vuerich.</p>
+			  <a href="https://www.turismofvg.it/it/active/la-cima-di-terrarossa-al-montasio-nel-regno-degli-stambecchi?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Campanile di Val Montanaia</strong>
+			  <p>Uno dei simboli delle Dolomiti Friulane: un’imponente guglia di roccia, meta di escursioni indimenticabili per chi ama la montagna autentica.</p>
+			  <a href="https://www.turismofvg.it/it/active/campanile-di-val-montanaia-e-bivacco-perugini?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+			<li>
+			  <strong>Pal Piccolo</strong>
+			  <p>Tra storia e natura, un’area di grande fascino al confine con l’Austria, con percorsi panoramici, testimonianze della Grande Guerra e magnifici laghi alpini.</p>
+			  <a href="https://www.turismofvg.it/it/outdoor/anello-del-pal-piccolo-e-freikofel?LangSetCMS=it" target="_blank" rel="noopener noreferrer">Apri link</a>
+			</li>
+		  </ul>
+		</div>
 
 	  </div>
 	</div>
-
-	<body>
 		
+	<!-- =========================================================
+	     TEMPLATE LOADER (kept from original theme)
+	     - Animated loader overlay controlled by template JS/CSS
+	     ========================================================= -->
 	<div class="fh5co-loader"></div>
 
-	<!-- EN/IT switcher -->
-	<!-- EN / IT toggle -->
+	<!-- =========================================================
+	     LANGUAGE SWITCHER (EN/IT)
+	     - Toggle control (checkbox + label)
+	     - Actual language show/hide handled by js/language-switcher.js
+	     ========================================================= -->
 	<div class="lang-toggle-wrap">
 	  <input type="checkbox"
-	         id="en-it"
-	         class="lang-toggle-input"
-	         aria-label="Switch language">
+			 id="en-it"
+			 class="lang-toggle-input"
+			 aria-label="Switch language">
 
 	  <label for="en-it" class="lang-toggle-switch">
-	    <span class="lang-toggle-label lang-toggle-label--it">IT</span>
-	    <span class="lang-toggle-label lang-toggle-label--en">EN</span>
-	    <span class="lang-toggle-knob"></span>
+		<span class="lang-toggle-label lang-toggle-label--it">IT</span>
+		<span class="lang-toggle-label lang-toggle-label--en">EN</span>
+		<span class="lang-toggle-knob"></span>
 	  </label>
 	</div>
 	
+	<!-- =========================================================
+	     MAIN PAGE CONTENT
+	     - Header (hero + countdown + RSVP button)
+	     - Couple section
+	     - Where/When + Map section
+	     - Timeline
+	     - Accommodation + info openers -> modals
+	     - Gallery (Magnific Popup)
+	     - Gift (IBAN info)
+	     - RSVP section (external Google Form)
+	     - Footer
+	     ========================================================= -->
 	<div id="page">
-	<!-- Navigation bar
-	<nav class="fh5co-nav" role="navigation">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-10 text-right menu-1">
-					<ul>
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="about.html">Story</a></li>
-						<li class="has-dropdown">
-							<a href="services.html">Services</a>
-							<ul class="dropdown">
-								<li><a href="#">Web Design</a></li>
-								<li><a href="#">eCommerce</a></li>
-								<li><a href="#">Branding</a></li>
-								<li><a href="#">API</a></li>
-							</ul>
-						</li>
-						<li class="has-dropdown">
-							<a href="gallery.html">Gallery</a>
-							<ul class="dropdown">
-								<li><a href="#">HTML5</a></li>
-								<li><a href="#">CSS3</a></li>
-								<li><a href="#">Sass</a></li>
-								<li><a href="#">jQuery</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-			
-		</div>
-	</nav>-->
 
+	<!-- HEADER -->
 	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/AS.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
@@ -300,17 +358,21 @@
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>Alessandro &amp; Silvia</h1>
-							<!-- English -->
+							<!-- EN -->
 							<h2 class="lang-content" data-lang="en">August 30th, 2026</h2>
-							<!-- Italian -->
+							<!-- IT -->
 							<h2 class="lang-content" data-lang="it">30 Agosto 2026</h2>
+
+							<!-- Countdown UI (initialised in js/countdown-init.js using simplyCountdown.js) -->
 							<div class="simply-countdown simply-countdown-one"></div>
+
+							<!-- RSVP button (external Google Form) -->
 							<p>
 							  <a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
-							     target="_blank"
-							     class="btn btn-default btn-sm">
-							    <span class="lang-content" data-lang="en">Will you be there?</span>
-							    <span class="lang-content" data-lang="it">Ci sarete?</span>
+								 target="_blank"
+								 class="btn btn-default btn-sm">
+								<span class="lang-content" data-lang="en">Will you be there?</span>
+								<span class="lang-content" data-lang="it">Ci sarete?</span>
 							  </a>
 							</p>
 						</div>
@@ -320,14 +382,15 @@
 		</div>
 	</header>
 
+	<!-- COUPLE SECTION -->
 	<div id="fh5co-couple">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<!-- English -->
+					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Ciao!</h2>
 					<p class="lang-content" data-lang="en">We're happy to invite you to celebrate our wedding with us.</p>
-					<!-- Italian -->
+					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">Ciao!</h2>
 					<p class="lang-content" data-lang="it">Siamo felici di invitarvi a celebrare con noi il nostro matrimonio.</p>
 					
@@ -340,11 +403,11 @@
 					</div>
 					<div class="desc-groom">
 						<h3>Alessandro</h3>
-						<!-- English -->
+						<!-- EN -->
 						<p class="lang-content" data-lang="en">
 						  Zen spirit and world champion of “you choose.” He loves mountains, science, and calculated risks... like always arriving at the last possible moment. Happy to let others handle the planning, but shows up with a smile, ready to go. Just maybe with his backpack still unpacked.
 						</p>
-						<!-- Italian -->
+						<!-- IT -->
 						<p class="lang-content" data-lang="it">
 						  Spirito zen e campione mondiale di “scegli tu”. Amante della montagna, della scienza e del rischio calcolato... tipo arrivare sempre all’ultimo secondo. Le lascia volentieri la pianificazione, ma poi arriva col sorriso, pronto a partire. Magari con lo zaino ancora da fare.
 						</p>
@@ -357,11 +420,11 @@
 					</div>
 					<div class="desc-bride">
 						<h3>Silvia</h3>
-						<!-- English -->
+						<!-- EN -->
 						<p class="lang-content" data-lang="en">
 						  Queen of to-do lists and planning well in advance. She has the memory of a goldfish, but makes up for it with phone notes, colourful post-its, and meticulous preparation. Loves travelling, the seaside, and the idea that everything is under control (even though it never really is).
 						</p>
-						<!-- Italian -->
+						<!-- IT -->
 						<p class="lang-content" data-lang="it">
 						  Regina delle to-do list e dell’organizzazione con largo anticipo. Ha la memoria di un pesce rosso, ma compensa con note nel telefono, post-it colorati e preparazione maniacale. Ama i viaggi, il mare e l’idea che tutto sia sotto controllo (anche se non lo è mai davvero).
 						</p>
@@ -371,113 +434,115 @@
 		</div>
 	</div>
 
+	<!-- WHEN AND WHERE SECTION -->
 	<div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/location1.jpeg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<!-- English -->
+					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Where &amp; When</h2>
-					<!-- Italian -->
+					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">Dove &amp; Quando</h2>
 				</div>
 			</div>
 			<div class="row equal-height-row">
 			  <div class="col-md-6 col-sm-6 text-center">
-			    <div class="event-wrap animate-box">
-			      <!-- English -->
-			      <h3 class="lang-content" data-lang="en">Event</h3>
+				<div class="event-wrap animate-box">
+				  <!-- EN -->
+				  <h3 class="lang-content" data-lang="en">Event</h3>
 
-			      <div class="event-cols lang-content" data-lang="en">
-			        <div class="event-col">
-			          <i class="icon-clock"></i>
-			          <span>Sunday</span>
-			          <span>30 aug 2026</span>
-			          <span>13:30 – 02:00<sup>+</sup></span>
-			        </div>
+				  <div class="event-cols lang-content" data-lang="en">
+					<div class="event-col">
+					  <i class="icon-clock"></i>
+					  <span>Sunday</span>
+					  <span>30 aug 2026</span>
+					  <span>13:30 – 02:00<sup>+</sup></span>
+					</div>
 
-			        <div class="event-col">
-			          <i class="icon-location-pin"></i>
-			          <span>Villa Merlo Dragoni</span>
-			          <span>via della Libertà 37</span>
-			          <span>Lovaria (UD)</span>
-			        </div>
-			      </div>
+					<div class="event-col">
+					  <i class="icon-location-pin"></i>
+					  <span>Villa Merlo Dragoni</span>
+					  <span>via della Libertà 37</span>
+					  <span>Lovaria (UD)</span>
+					</div>
+				  </div>
 
-			      <p class="lang-content" data-lang="en">
-			        The whole event will be held at <strong>Villa Merlo Dragoni</strong> in Lovaria, a village not far from Udine.
-			        Free parking is available on site (see map).
-			        Please arrive by <strong>13:30</strong> for a prompt start at <strong>14:00</strong>.
-			      </p>
+				  <p class="lang-content" data-lang="en">
+					The whole event will be held at <strong>Villa Merlo Dragoni</strong> in Lovaria, a village not far from Udine.
+					Free parking is available on site (see map).
+					Please arrive by <strong>13:30</strong> for a prompt start at <strong>14:00</strong>.
+				  </p>
 
-			      <!-- Italian -->
-			      <h3 class="lang-content" data-lang="it">Evento</h3>
+				  <!-- IT -->
+				  <h3 class="lang-content" data-lang="it">Evento</h3>
 
-			      <div class="event-cols lang-content" data-lang="it">
-			        <div class="event-col">
-			          <i class="icon-clock"></i>
-			          <span>Domenica</span>
-			          <span>30 ago 2026</span>
-			          <span>13:30 – 02:00<sup>+</sup></span>
-			        </div>
+				  <div class="event-cols lang-content" data-lang="it">
+					<div class="event-col">
+					  <i class="icon-clock"></i>
+					  <span>Domenica</span>
+					  <span>30 ago 2026</span>
+					  <span>13:30 – 02:00<sup>+</sup></span>
+					</div>
 
-			        <div class="event-col">
-			          <i class="icon-location-pin"></i>
-			          <span>Villa Merlo Dragoni</span>
-			          <span>via della Libertà 37</span>
-			          <span>Lovaria (UD)</span>
-			        </div>
-			      </div>
+					<div class="event-col">
+					  <i class="icon-location-pin"></i>
+					  <span>Villa Merlo Dragoni</span>
+					  <span>via della Libertà 37</span>
+					  <span>Lovaria (UD)</span>
+					</div>
+				  </div>
 
-			      <p class="lang-content" data-lang="it">
-			        L’intero evento si svolgerà presso <strong>Villa Merlo Dragoni</strong> a Lovaria, non lontano da Udine.
-			        È disponibile un parcheggio gratuito in loco (vedi mappa).
-			        Vi chiediamo di arrivare entro le <strong>13:30</strong> per iniziare puntualmente alle <strong>14:00</strong>.
-			      </p>
-			    </div>
+				  <p class="lang-content" data-lang="it">
+					L’intero evento si svolgerà presso <strong>Villa Merlo Dragoni</strong> a Lovaria, non lontano da Udine.
+					È disponibile un parcheggio gratuito in loco (vedi mappa).
+					Vi chiediamo di arrivare entro le <strong>13:30</strong> per iniziare puntualmente alle <strong>14:00</strong>.
+				  </p>
+				</div>
 			  </div>
 
 			  <div class="col-md-6 col-sm-6 text-center">
-			    <div class="event-wrap animate-box event-wrap--map">
-			      <!-- English -->
-			      <h3 class="lang-content" data-lang="en">Map</h3>
+				<div class="event-wrap animate-box event-wrap--map">
+				  <!-- EN -->
+				  <h3 class="lang-content" data-lang="en">Map</h3>
 
-			      <div class="map-body lang-content" data-lang="en">
-			        <iframe
-			          class="event-map"
-			          src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
-			          allowfullscreen=""
-			          loading="lazy"
-			          referrerpolicy="no-referrer-when-downgrade">
-			        </iframe>
-			      </div>
+				  <div class="map-body lang-content" data-lang="en">
+					<iframe
+					  class="event-map"
+					  src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
+					  allowfullscreen=""
+					  loading="lazy"
+					  referrerpolicy="no-referrer-when-downgrade">
+					</iframe>
+				  </div>
 
-			      <!-- Italian -->
-			      <h3 class="lang-content" data-lang="it">Mappa</h3>
+				  <!-- IT -->
+				  <h3 class="lang-content" data-lang="it">Mappa</h3>
 
-			      <div class="map-body lang-content" data-lang="it">
-			        <iframe
-			          class="event-map"
-			          src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
-			          allowfullscreen=""
-			          loading="lazy"
-			          referrerpolicy="no-referrer-when-downgrade">
-			        </iframe>
-			      </div>
-			    </div>
+				  <div class="map-body lang-content" data-lang="it">
+					<iframe
+					  class="event-map"
+					  src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
+					  allowfullscreen=""
+					  loading="lazy"
+					  referrerpolicy="no-referrer-when-downgrade">
+					</iframe>
+				  </div>
+				</div>
 			  </div>
 			</div>
 		</div>
 	</div>
 
+	<!-- TIMELINE -->
 	<div id="fh5co-couple-story">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<!-- English -->
+					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Timeline of events</h2>
 					<p class="lang-content" data-lang="en">Here is the plan of our wedding day. We can’t wait to celebrate with you!</p>
-					<!-- Italian -->
+					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">Programma della giornata</h2>
 					<p class="lang-content" data-lang="it">Ecco il programma del matrimonio. Non vediamo l’ora di festeggiare con voi!</p>
 				</div>
@@ -491,17 +556,17 @@
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-								  <!-- English -->
+								  <!-- EN -->
 								  <h3 class="timeline-title lang-content" data-lang="en">Ceremony</h3>
 								  <span class="date lang-content" data-lang="en">13:30 – 14:30</span>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <h3 class="timeline-title lang-content" data-lang="it">Cerimonia</h3>
 								  <span class="date lang-content" data-lang="it">13:30 – 14:30</span>
 								</div>
 								<div class="timeline-body">
-								  <!-- English -->
+								  <!-- EN -->
 								  <p class="lang-content" data-lang="en">The moment we say “I do.” Join us for the ceremony in the villa gardens. Please arrive a little early so we can start right on time.</p>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <p class="lang-content" data-lang="it">Il momento in cui diremo “sì”. La cerimonia si svolgerà nei giardini della villa. Vi chiediamo di arrivare con anticipo per iniziare puntualmente.</p>
 								</div>
 							</div>
@@ -512,17 +577,17 @@
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-								  <!-- English -->
+								  <!-- EN -->
 								  <h3 class="timeline-title lang-content" data-lang="en">Apéro</h3>
 								  <span class="date lang-content" data-lang="en">14:30 – 17:00</span>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <h3 class="timeline-title lang-content" data-lang="it">Aperitivo</h3>
 								  <span class="date lang-content" data-lang="it">14:30 – 17:00</span>
 								</div>
 								<div class="timeline-body">
-								  <!-- English -->
+								  <!-- EN -->
 								  <p class="lang-content" data-lang="en">Drinks in hand, worries away. Join us for an apéritif in the garden. This is where the celebrating really begins!</p>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <p class="lang-content" data-lang="it">Su i bicchieri, giù i pensieri. Ci ritroviamo in giardino per l’aperitivo: da qui inizia davvero la festa!</p>
 								</div>
 							</div>
@@ -533,17 +598,17 @@
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-								  <!-- English -->
+								  <!-- EN -->
 								  <h3 class="timeline-title lang-content" data-lang="en">Reception</h3>
 								  <span class="date lang-content" data-lang="en">17:00 – 21:00</span>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <h3 class="timeline-title lang-content" data-lang="it">Ricevimento</h3>
 								  <span class="date lang-content" data-lang="it">17:00 – 21:00</span>
 								</div>
 								<div class="timeline-body">
-								  <!-- English -->
+								  <!-- EN -->
 								  <p class="lang-content" data-lang="en">Food has arrived, and it’s serious business. Sit back, enjoy the meal, and get ready for toasts, laughter, and a few surprises.</p>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <p class="lang-content" data-lang="it">È arrivato il momento del cibo, e si fa sul serio. Rilassatevi, gustatevi il pranzo e preparatevi a brindisi, risate e qualche sorpresa.</p>
 								</div>
 							</div>
@@ -554,17 +619,17 @@
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-								  <!-- English -->
+								  <!-- EN -->
 								  <h3 class="timeline-title lang-content" data-lang="en">Party</h3>
 								  <span class="date lang-content" data-lang="en">21:00 – 02:00<sup>+</sup></span>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <h3 class="timeline-title lang-content" data-lang="it">Festa</h3>
 								  <span class="date lang-content" data-lang="it">21:00 – 02:00<sup>+</sup></span>
 								</div>
 								<div class="timeline-body">
-								  <!-- English -->
+								  <!-- EN -->
 								  <p class="lang-content" data-lang="en">Shoes optional, dancing encouraged. Let’s celebrate into the night with music, drinks, and plenty of dancing.</p>
-								  <!-- Italian -->
+								  <!-- IT -->
 								  <p class="lang-content" data-lang="it">Tutti in pista, le scarpe sono un optional. Festeggiamo fino a notte fonda tra musica, drink e tanta voglia di divertirsi.</p>
 								</div>
 							</div>
@@ -575,106 +640,105 @@
 		</div>
 	</div>
 
+	<!-- ACCOMODATION -->
 	<div id="fh5co-info" class="fh5co-section">
 	  <div class="container">
+		<div class="row animate-box">
+		  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+			<!-- EN -->
+			<div class="lang-content" data-lang="en">
+			  <h2>Accommodation &amp; area</h2>
 
-	    <!-- Title + introduction -->
-	    <div class="row animate-box">
-	      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+			  <p>
+				Our wedding venue is close to Udine, a perfect base to discover Friuli-Venezia Giulia and everything this beautiful region has to offer.
+				For your stay, you can choose to sleep in <strong>central Udine</strong>, which is convenient and lovely to explore, or, if you’d rather be closer to the venue,
+				we recommend <a href="https://lefucine.com/en/le-fucine-hotel/" target="_blank" rel="noopener noreferrer"><strong>Le Fucine Hotel</strong></a>,
+				<a href="https://www.delparcohotel.eu/" target="_blank" rel="noopener noreferrer"><strong>delParco Hotel</strong></a>, or one of the many <em><strong>agriturismi</strong></em> in the area.
+			  </p>
 
-	        <!-- English -->
-	        <div class="lang-content" data-lang="en">
-	          <h2>Accommodation &amp; area</h2>
+			  <p>
+				If you have a few extra days, it’s really worth staying a bit longer and exploring the region. <strong>Friuli-Venezia Giulia</strong> is home for us: we were both born and raised in Pordenone, and we both lived in Trieste during university. So if you’re unsure where to go... just ask us! Between cities, charming towns, nature, great food and (above all) excellent wine, the area has plenty to offer. Here are a few ideas to get you started.
+			  </p>
+			</div>
 
-	          <p>
-	            Our wedding venue is close to Udine, a perfect base to discover Friuli-Venezia Giulia and everything this beautiful region has to offer.
-	            For your stay, you can choose to sleep in <strong>central Udine</strong>, which is convenient and lovely to explore, or, if you’d rather be closer to the venue,
-	            we recommend <a href="https://lefucine.com/en/le-fucine-hotel/" target="_blank" rel="noopener noreferrer"><strong>Le Fucine Hotel</strong></a>,
-	            <a href="https://www.delparcohotel.eu/" target="_blank" rel="noopener noreferrer"><strong>delParco Hotel</strong></a>, or one of the many <em><strong>agriturismi</strong></em> in the area.
-	          </p>
+			<!-- IT -->
+			<div class="lang-content" data-lang="it">
+			  <h2>Pernottamento &amp; zona</h2>
 
-	          <p>
-	            If you have a few extra days, it’s really worth staying a bit longer and exploring the region. <strong>Friuli-Venezia Giulia</strong> is home for us: we were both born and raised in Pordenone, and we both lived in Trieste during university. So if you’re unsure where to go... just ask us! Between cities, charming towns, nature, great food and (above all) excellent wine, the area has plenty to offer. Here are a few ideas to get you started.
-	          </p>
-	        </div>
+			  <p>
+				La location del matrimonio si trova vicino a Udine, una posizione perfetta per scoprire il Friuli-Venezia Giulia e tutto ciò che questa splendida regione ha da offrire.
+				Per il pernottamento potete scegliere di soggiornare nel <strong>centro di Udine</strong>, comodo e piacevole da vivere, oppure, se preferite essere più vicini alla location,
+				consigliamo <a href="https://lefucine.com/en/le-fucine-hotel/" target="_blank" rel="noopener noreferrer"><strong>Le Fucine Hotel</strong></a>,
+				<a href="https://www.delparcohotel.eu/" target="_blank" rel="noopener noreferrer"><strong>delParco Hotel</strong></a> o uno dei tanti <strong>agriturismi</strong> della zona.
+			  </p>
 
-	        <!-- Italian -->
-	        <div class="lang-content" data-lang="it">
-	          <h2>Pernottamento &amp; zona</h2>
+			  <p>
+				Se avete qualche giorno in più, vale davvero la pena fermarsi ed esplorare un po’ la regione. Il <strong>Friuli-Venezia Giulia</strong> per noi è casa: siamo nati e cresciuti a Pordenone e abbiamo entrambi vissuto a Trieste durante l'università, quindi se avete dubbi su dove andare... chiedete pure! Tra città, borghi, natura, buon cibo e (soprattutto) ottimo vino, le occasioni per godersi il territorio non mancano. Qui sotto trovate qualche idea per iniziare il vostro giro.
+			  </p>
+			</div>
 
-	          <p>
-	            La location del matrimonio si trova vicino a Udine, una posizione perfetta per scoprire il Friuli-Venezia Giulia e tutto ciò che questa splendida regione ha da offrire.
-	            Per il pernottamento potete scegliere di soggiornare nel <strong>centro di Udine</strong>, comodo e piacevole da vivere, oppure, se preferite essere più vicini alla location,
-	            consigliamo <a href="https://lefucine.com/en/le-fucine-hotel/" target="_blank" rel="noopener noreferrer"><strong>Le Fucine Hotel</strong></a>,
-	            <a href="https://www.delparcohotel.eu/" target="_blank" rel="noopener noreferrer"><strong>delParco Hotel</strong></a> o uno dei tanti <strong>agriturismi</strong> della zona.
-	          </p>
+		  </div>
+		</div>
 
-	          <p>
-	            Se avete qualche giorno in più, vale davvero la pena fermarsi ed esplorare un po’ la regione. Il <strong>Friûl</strong> per noi è casa: siamo nati e cresciuti a Pordenone e abbiamo entrambi vissuto a Trieste durante l'università, quindi se avete dubbi su dove andare... chiedete pure! Tra città, borghi, natura, buon cibo e (soprattutto) ottimo vino, le occasioni per godersi il territorio non mancano. Qui sotto trovate qualche idea per iniziare il vostro giro.
-	          </p>
-	        </div>
+		<!-- Openable lists (Cities/Foood/Nature) -->
+		<div class="row animate-box">
+		  <div class="col-md-8 col-md-offset-2">
 
-	      </div>
-	    </div>
+			<!-- EN -->
+			<div class="lang-content" data-lang="en">
+			  <div class="info-openers">
+				<button class="info-opener" type="button" data-modal="modal-cities">
+				  <span class="info-opener__title">Cities &amp; towns</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
 
-	    <!-- Compact openable lists (3 lines) -->
-	    <div class="row animate-box">
-	      <div class="col-md-8 col-md-offset-2">
+				<button class="info-opener" type="button" data-modal="modal-food">
+				  <span class="info-opener__title">Food, wine &amp; shopping</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
 
-	        <!-- English -->
-	        <div class="lang-content" data-lang="en">
-	          <div class="info-openers">
-	            <button class="info-opener" type="button" data-modal="modal-cities">
-	              <span class="info-opener__title">Cities &amp; towns</span>
-	              <span class="info-opener__hint">Tap to explore</span>
-	            </button>
+				<button class="info-opener" type="button" data-modal="modal-nature">
+				  <span class="info-opener__title">Nature &amp; mountains</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
+			  </div>
+			</div>
 
-	            <button class="info-opener" type="button" data-modal="modal-food">
-	              <span class="info-opener__title">Food, wine &amp; shopping</span>
-	              <span class="info-opener__hint">Tap to explore</span>
-	            </button>
+			<!-- IT -->
+			<div class="lang-content" data-lang="it">
+			  <div class="info-openers">
+				<button class="info-opener" type="button" data-modal="modal-cities">
+				  <span class="info-opener__title">Città &amp; borghi</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
 
-	            <button class="info-opener" type="button" data-modal="modal-nature">
-	              <span class="info-opener__title">Nature &amp; mountains</span>
-	              <span class="info-opener__hint">Tap to explore</span>
-	            </button>
-	          </div>
-	        </div>
+				<button class="info-opener" type="button" data-modal="modal-food">
+				  <span class="info-opener__title">Cibo, vino &amp; shopping</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
 
-	        <!-- Italian -->
-	        <div class="lang-content" data-lang="it">
-	          <div class="info-openers">
-	            <button class="info-opener" type="button" data-modal="modal-cities">
-	              <span class="info-opener__title">Città &amp; borghi</span>
-	              <span class="info-opener__hint">Scopri di più</span>
-	            </button>
+				<button class="info-opener" type="button" data-modal="modal-nature">
+				  <span class="info-opener__title">Natura e montagna</span>
+				  <span class="info-opener__icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+				</button>
+			  </div>
+			</div>
 
-	            <button class="info-opener" type="button" data-modal="modal-food">
-	              <span class="info-opener__title">Cibo, vino &amp; shopping</span>
-	              <span class="info-opener__hint">Scopri di più</span>
-	            </button>
-
-	            <button class="info-opener" type="button" data-modal="modal-nature">
-	              <span class="info-opener__title">Natura e montagna</span>
-	              <span class="info-opener__hint">Scopri di più</span>
-	            </button>
-	          </div>
-	        </div>
-
-	      </div>
-	    </div>
+		  </div>
+		</div>
 
 	  </div>
 	</div>
 
+	<!-- GALLERY -->
 	<div id="fh5co-gallery">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<!-- English -->
+					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Love is a journey</h2>
 					<p class="lang-content" data-lang="en">A collection of moments and places that have been part of our story.</p>
-					<!-- Italian -->
+					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">L'amore è un viaggio</h2>
 					<p class="lang-content" data-lang="it">Una raccolta di momenti e luoghi che hanno fatto parte della nostra storia.</p>
 				</div>
@@ -1183,186 +1247,197 @@
 		</div>
 	</div>
 
+	<!-- GIFT -->
 	<div id="fh5co-gift" class="fh5co-section fh5co-section-gray">
 	  <div class="container">
-	    <div class="row animate-box">
-	      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+		<div class="row animate-box">
+		  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 
-	        <!-- English -->
-	        <div class="lang-content" data-lang="en">
-	          <h2>Wedding gift</h2>
+			<!-- EN -->
+			<div class="lang-content" data-lang="en">
+			  <h2>Wedding gift</h2>
 
-	          <p>
-	            Our greatest wish is simply to spend a beautiful day together with the people we love. If you would still like to give us a gift, you can help make our next adventure even more special. To be completely honest, we don’t know yet where we’ll go. But we do have a list of destinations that make our hearts beat a little faster.
-	          </p>
+			  <p>
+				Our greatest wish is simply to spend a beautiful day together with the people we love. If you would still like to give us a gift, you can help make our next adventure even more special. To be completely honest, we don’t know yet where we’ll go. But we do have a list of destinations that make our hearts beat a little faster.
+			  </p>
 
-	          <div class="row gift-lists gift-lists--inline text-center">
+			  <div class="row gift-lists gift-lists--inline text-center">
 
-	            <!-- Bride -->
-	            <div class="col-md-6">
-	              <h4 class="gift-subtitle">From the bride’s list</h4>
-	              <ul class="gift-list">
-	                <li>
-	                  <strong>Tanzania &amp; Seychelles</strong>
-	                  <span>for a safari and a bit of relaxation</span>
-	                </li>
-	                <li>
-	                  <strong>Japan &amp; Korea</strong>
-	                  <span>for food and culture</span>
-	                </li>
-	                <li>
-	                  <strong>Iceland</strong>
-	                  <span>for the Northern Lights</span>
-	                </li>
-	              </ul>
-	            </div>
+				<!-- Bride -->
+				<div class="col-md-6">
+				  <h4 class="gift-subtitle">From the bride’s list</h4>
+				  <ul class="gift-list">
+					<li>
+					  <strong>Tanzania &amp; Seychelles</strong>
+					  <span>for a safari and a bit of relaxation</span>
+					</li>
+					<li>
+					  <strong>Japan &amp; Korea</strong>
+					  <span>for food and culture</span>
+					</li>
+					<li>
+					  <strong>Iceland</strong>
+					  <span>for the Northern Lights</span>
+					</li>
+				  </ul>
+				</div>
 
-	            <!-- Groom -->
-	            <div class="col-md-6">
-	              <h4 class="gift-subtitle">From the groom’s list</h4>
-	              <ul class="gift-list">
-	                <li>
-	                  <strong>Chile &amp; Argentina</strong>
-	                  <span>for breathtaking landscapes</span>
-	                </li>
-	                <li>
-	                  <strong>Cambodia &amp; Thailand</strong>
-	                  <span>for breathtaking landscapes</span>
-	                </li>
-	                <li>
-	                  <strong>South Africa</strong>
-	                  <span>for breathtaking landscapes</span>
-	                </li>
-	              </ul>
-	            </div>
+				<!-- Groom -->
+				<div class="col-md-6">
+				  <h4 class="gift-subtitle">From the groom’s list</h4>
+				  <ul class="gift-list">
+					<li>
+					  <strong>Chile &amp; Argentina</strong>
+					  <span>for breathtaking landscapes</span>
+					</li>
+					<li>
+					  <strong>Cambodia &amp; Thailand</strong>
+					  <span>for breathtaking landscapes</span>
+					</li>
+					<li>
+					  <strong>South Africa</strong>
+					  <span>for breathtaking landscapes</span>
+					</li>
+				  </ul>
+				</div>
 
-	          </div>
+			  </div>
 
-	          <p>
-	            Notice any differences? The bride dreams of a bit of everything, the groom seems to have just one plan: getting lost in nature... or maybe leaving the bride there!
-	          </p>
+			  <p>
+				Notice any differences? The bride dreams of a bit of everything, the groom seems to have just one plan: getting lost in nature... or maybe leaving the bride there!
+			  </p>
 
-	          <p>
-	            Who will win? Where will we go? You can try to guess! Every contribution will bring us one step closer to one of these destinations, and wherever we end up, you will somehow be with us. A heartfelt thank you in advance for your love, generosity, and for being part of our journey.
-	          </p>
+			  <p>
+				Who will win? Where will we go? You can try to guess! Every contribution will bring us one step closer to one of these destinations, and wherever we end up, you will somehow be with us. A heartfelt thank you in advance for your love, generosity, and for being part of our journey.
+			  </p>
 
-	          <p>For those who wish to contribute, here are the details:</p>
-	        </div>
+			  <p>For those who wish to contribute, here are the details:</p>
+			</div>
 
-	        <!-- Italian -->
-	        <div class="lang-content" data-lang="it">
-	          <h2>Regalo</h2>
+			<!-- IT -->
+			<div class="lang-content" data-lang="it">
+			  <h2>Regalo</h2>
 
-	          <p>
-	          	Il nostro desiderio più grande è semplicemente quello di trascorrere una splendida giornata insieme alle persone che amiamo. Se proprio desiderate farci un regalo materiale, potete aiutarci a rendere ancora più speciale la nostra prossima avventura.
-	          	A dire il vero, non sappiamo ancora dove ci porterà il viaggio, ma abbiamo una lista di destinazioni che ci fanno battere il cuore.
-	          </p>
+			  <p>
+				Il nostro desiderio più grande è semplicemente quello di trascorrere una splendida giornata insieme alle persone che amiamo. Se proprio desiderate farci un regalo materiale, potete aiutarci a rendere ancora più speciale la nostra prossima avventura.
+				A dire il vero, non sappiamo ancora dove ci porterà il viaggio, ma abbiamo una lista di destinazioni che ci fanno battere il cuore.
+			  </p>
 
-	          <div class="row gift-lists gift-lists--inline text-center">
+			  <div class="row gift-lists gift-lists--inline text-center">
 
-	            <!-- Sposa -->
-	            <div class="col-md-6">
-	              <h4 class="gift-subtitle">Dalla lista della sposa</h4>
-	              <ul class="gift-list">
-	                <li>
-	                  <strong>Tanzania &amp; Seychelles</strong>
-	                  <span>per un safari e un po’ di relax</span>
-	                </li>
-	                <li>
-	                  <strong>Giappone &amp; Corea</strong>
-	                  <span>per cibo e cultura</span>
-	                </li>
-	                <li>
-	                  <strong>Islanda</strong>
-	                  <span>per l’aurora boreale</span>
-	                </li>
-	              </ul>
-	            </div>
+				<!-- Sposa -->
+				<div class="col-md-6">
+				  <h4 class="gift-subtitle">Dalla lista della sposa</h4>
+				  <ul class="gift-list">
+					<li>
+					  <strong>Tanzania &amp; Seychelles</strong>
+					  <span>per un safari e un po’ di relax</span>
+					</li>
+					<li>
+					  <strong>Giappone &amp; Corea</strong>
+					  <span>per cibo e cultura</span>
+					</li>
+					<li>
+					  <strong>Islanda</strong>
+					  <span>per l’aurora boreale</span>
+					</li>
+				  </ul>
+				</div>
 
-	            <!-- Sposo -->
-	            <div class="col-md-6">
-	              <h4 class="gift-subtitle">Dalla lista dello sposo</h4>
-	              <ul class="gift-list">
-	                <li>
-	                  <strong>Cile &amp; Argentina</strong>
-	                  <span>per paesaggi spettacolari</span>
-	                </li>
-	                <li>
-	                  <strong>Cambogia &amp; Thailandia</strong>
-	                  <span>per paesaggi spettacolari</span>
-	                </li>
-	                <li>
-	                  <strong>Sud Africa</strong>
-	                  <span>per paesaggi spettacolari</span>
-	                </li>
-	              </ul>
-	            </div>
+				<!-- Sposo -->
+				<div class="col-md-6">
+				  <h4 class="gift-subtitle">Dalla lista dello sposo</h4>
+				  <ul class="gift-list">
+					<li>
+					  <strong>Cile &amp; Argentina</strong>
+					  <span>per paesaggi spettacolari</span>
+					</li>
+					<li>
+					  <strong>Cambogia &amp; Thailandia</strong>
+					  <span>per paesaggi spettacolari</span>
+					</li>
+					<li>
+					  <strong>Sud Africa</strong>
+					  <span>per paesaggi spettacolari</span>
+					</li>
+				  </ul>
+				</div>
 
-	          </div>
+			  </div>
 
-	          <p>
-	            Notate la differenza? La sposa sogna di fare un po’ di tutto, mentre lo sposo ha un unico piano: perdersi in mezzo alla natura... o magari lasciare lì la sposa!
-	          </p>
+			  <p>
+				Notate la differenza? La sposa sogna di fare un po’ di tutto, mentre lo sposo ha un unico piano: perdersi in mezzo alla natura... o magari lasciare lì la sposa!
+			  </p>
 
-	          <p>
-	            Chi dei due vincerà? Dove andremo? Potete provare a indovinare! Ogni contributo ci porterà un passo più vicino a una di queste mete e, ovunque finirà il nostro viaggio, in qualche modo vi porteremo con noi. Un grazie di cuore in anticipo a tutti voi, per il pensiero e l’affetto che ci state già dimostrando.
-	          </p>
+			  <p>
+				Chi dei due vincerà? Dove andremo? Potete provare a indovinare! Ogni contributo ci porterà un passo più vicino a una di queste mete e, ovunque finirà il nostro viaggio, in qualche modo vi porteremo con noi. Un grazie di cuore in anticipo a tutti voi, per il pensiero e l’affetto che ci state già dimostrando.
+			  </p>
 
-	          <p>Per chi volesse contribuire, ecco i dettagli:</p>
-	        </div>
+			  <p>Per chi volesse contribuire, ecco i dettagli:</p>
+			</div>
 
-	        <div class="row iban-row">
+			<!-- IBAN -->
+			<div class="row iban-row">
 
-	          <!-- English -->
-	          <div class="lang-content" data-lang="en">
-	            <div class="row">
-	              <div class="col-md-6 iban-col">
-	                <h4>From Switzerland 🇨🇭</h4>
-	                <p class="iban-code">CH24 0026 9269 1316 7440 W</p>
-	                <p class="iban-note">Holder: Alessandro Giacchetto u/o Silvia Lo Faro</p>
-	              </div>
+			  <!-- EN -->
+			  <div class="lang-content" data-lang="en">
+				<div class="row">
+				  <div class="col-md-6 iban-col">
+					<h4>From Switzerland 🇨🇭</h4>
+					<p class="iban-line">
+  						<span class="iban-text">CH24 0026 9269 1316 7440 W</span>
+  					</p>
+					<p class="iban-note">Holder: Alessandro Giacchetto u/o Silvia Lo Faro</p>
+				  </div>
 
-	              <div class="col-md-6 iban-col">
-	                <h4>From Italy 🇮🇹</h4>
-	                <p class="iban-code">IT18I 08805 65070 001009200841</p>
-	                <p class="iban-note">Holder: Alessandro Giacchetto</p>
-	              </div>
-	            </div>
-	          </div>
+				  <div class="col-md-6 iban-col">
+					<h4>From Italy 🇮🇹</h4>
+					<p class="iban-line">
+  						<span class="iban-text">IT18I 08805 65070 001009200841</span>
+  					</p>
+					<p class="iban-note">Holder: Alessandro Giacchetto</p>
+				  </div>
+				</div>
+			  </div>
 
-	          <!-- Italian -->
-	          <div class="lang-content" data-lang="it">
-	            <div class="row">
-	              <div class="col-md-6 iban-col">
-	                <h4>Dalla Svizzera 🇨🇭</h4>
-	                <p class="iban-code">CH24 0026 9269 1316 7440 W</p>
-	                <p class="iban-note">Titolare: Alessandro Giacchetto u/o Silvia Lo Faro</p>
-	              </div>
+			  <!-- IT -->
+			  <div class="lang-content" data-lang="it">
+				<div class="row">
+				  <div class="col-md-6 iban-col">
+					<h4>Dalla Svizzera 🇨🇭</h4>
+					<p class="iban-line">
+  						<span class="iban-text">CH24 0026 9269 1316 7440 W</span>
+  					</p>
+					<p class="iban-note">Titolare: Alessandro Giacchetto u/o Silvia Lo Faro</p>
+				  </div>
 
-	              <div class="col-md-6 iban-col">
-	                <h4>Dall'Italia 🇮🇹</h4>
-	                <p class="iban-code">IT18I 08805 65070 001009200841</p>
-	                <p class="iban-note">Titolare: Alessandro Giacchetto</p>
-	              </div>
-	            </div>
-	          </div>
+				  <div class="col-md-6 iban-col">
+					<h4>Dall'Italia 🇮🇹</h4>
+					<p class="iban-line">
+  						<span class="iban-text">IT18I 08805 65070 001009200841</span>
+  					</p>
+					<p class="iban-note">Titolare: Alessandro Giacchetto</p>
+				  </div>
+				</div>
+			  </div>
 
-	        </div>
+			</div>
 
-	      </div>
-	    </div>
+		  </div>
+		</div>
 	  </div>
 	</div>
 
+	<!-- ATTENDING? SECTION -->
 	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/location2.jpeg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<!-- English -->
+					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Are you attending?</h2>
 					<p class="lang-content" data-lang="en">Please fill-up the form to let us know if you're attending. Thanks!</p>
-					<!-- Italian -->
+					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">Parteciperete?</h2>
 					<p class="lang-content" data-lang="it">Fatecelo sapere tramite il modulo RSVP. Grazie!</p>
 				</div>
@@ -1371,12 +1446,12 @@
 				<div class="col-md-10 col-md-offset-1">
 					<div class="row animate-box">
 					  <div class="col-md-10 col-md-offset-1 text-center">
-					    <a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
-					       target="_blank"
-					       class="btn btn-default btn-lg">
-					      <span class="lang-content" data-lang="en">RSVP form</span>
-					      <span class="lang-content" data-lang="it">Modulo RSVP</span>
-					    </a>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
+						   target="_blank"
+						   class="btn btn-default btn-lg">
+						  <span class="lang-content" data-lang="en">RSVP form</span>
+						  <span class="lang-content" data-lang="it">Modulo RSVP</span>
+						</a>
 					  </div>
 					</div>
 				</div>
@@ -1384,27 +1459,29 @@
 		</div>
 	</div>
 
+	<!-- FOOTER -->
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
-
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<!-- English -->
+						<!-- EN -->
 						<small class="block" data-lang="en">&copy; 2026 Alessandro &amp; Silvia. All rights reserved.</small>
 						<small class="block" data-lang="en">Based on a design by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></small>
-						<!-- Italian -->
+						<!-- IT -->
 						<small class="block" data-lang="it">&copy; 2026 Alessandro &amp; Silvia. Tutti i diritti riservati.</small>
 						<small class="block" data-lang="it">Basato su un design di <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></small>
 					</p>
 				</div>
 			</div>
-
 		</div>
 	</footer>
 	</div>
 
-	<!-- Hidden video content -->
+	<!-- =========================================================
+	     HIDDEN VIDEO (Magnific Popup)
+	     - Opened as a lightbox from the gallery via href="#nacho-video"
+	     ========================================================= -->
 	<div id="nacho-video" class="mfp-hide">
 	  <video width="100%" controls>
 		<source src="images/Nacho/2023-06-Dandolo.mp4" type="video/mp4">
@@ -1413,84 +1490,59 @@
 	  </video>
 	</div>
 
-	<!-- Go-to-top arrow -->
+	<!-- =========================================================
+	     GO TO TOP (template)
+	     - Scroll-to-top button handled by template JS (main.js)
+	     ========================================================= -->
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 	
-	<!-- JS scripts -->
-	<!-- jQuery -->
+	<!-- =========================================================
+	     JS SCRIPTS (loaded at end for performance)
+	     Order matters: jQuery first, then plugins, then theme/custom scripts
+	     ========================================================= -->
+
+	<!-- jQuery (required by most template plugins) -->
 	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
+
+	<!-- jQuery Easing (smooth easing functions used by animations/scroll) -->
 	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
+
+	<!-- Bootstrap JS (template layout / components) -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
+
+	<!-- Waypoints (triggers animations when scrolling into view) -->
 	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
+
+	<!-- Owl Carousel (required/expected by js/main.js; even if no carousel is used) -->
 	<script src="js/owl.carousel.min.js"></script>
-	<!-- countTo -->
+
+	<!-- CountTo (template “counter” plugin; may be unused depending on page sections) -->
 	<script src="js/jquery.countTo.js"></script>
-	<!-- Stellar -->
+
+	<!-- Stellar (parallax background effect; used via data-stellar-background-ratio) -->
 	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Magnific Popup -->
+
+	<!-- Magnific Popup (gallery lightbox + hidden video lightbox) -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
-	<!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
+
+	<!-- Countdown plugin + site-specific initialisation -->
 	<script src="js/simplyCountdown.js"></script>
-	<!-- Main -->
+	<script src="js/countdown-init.js"></script>
+
+	<!-- Main theme script (FH5CO template behaviours) -->
 	<script src="js/main.js"></script>
 
-	<script>
-	$(document).ready(function() {
-	  // Set the exact local date/time of the wedding start
-	  // Example: 30 Aug 2026 at 12:00 (noon) local time
-	  const weddingDate = new Date(2026, 7, 30, 13, 30, 0); // months are 0-based: 7 = August
-
-	  const year = weddingDate.getFullYear();
-	  const month = weddingDate.getMonth() + 1;
-	  const day = weddingDate.getDate();
-	  const hours = weddingDate.getHours() +1;
-	  const minutes = weddingDate.getMinutes();
-	  const seconds = weddingDate.getSeconds();
-
-	  const countdownSelectors = ['.simply-countdown-one', '#simply-countdown-losange'];
-
-	  countdownSelectors.forEach(selector => {
-	    $(selector).simplyCountdown({
-	      year: year,
-	      month: month,
-	      day: day,
-	      hours: hours,
-	      minutes: minutes,
-	      seconds: seconds,
-	      enableUtc: false
-	    });
-	  });
-	});
-	</script>
-
-	<!-- RSVP scroll smooth -->
-	<script src="js/RSVP-scroll.js"></script>
-
-	<!-- language switcher -->
+	<!-- Language switcher (shows/hides .lang-content blocks based on EN/IT toggle) -->
 	<script src="js/language-switcher.js"></script>
 
-	<!-- galleries -->
+	<!-- Galleries (binds Magnific Popup groups to the gallery-XXXX classes) -->
 	<script src="js/galleries.js"></script>
 
-	<!--<script>
-	(function () {
-	const PASSWORD = "ale&silvia-2026";
-
-	const entered = prompt("Please enter the password:");
-	if (entered !== PASSWORD) {
-	  document.body.innerHTML = "";
-	  alert("Wrong password");
-	}
-	})();
-	</script>-->
+	<!-- Password gate (overlay show/hide + sessionStorage + scroll lock) -->
+	<script src="js/password-gate.js"></script>
 
 	</body>
 </html>
-

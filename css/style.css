@@ -1,3 +1,16 @@
+/* ==========================================================================
+   Alessandro & Silvia — Wedding Website CSS (template + custom overrides)
+
+   Based on a legacy FreeHTML5.co / ThemeWagon template.
+   Most `.fh5co-*` selectors come from the original theme.
+
+   Notes:
+   - "TEMPLATE" sections are mostly unchanged.
+   - "CUSTOM" sections are wedding-specific additions/overrides.
+   - Some unused template CSS may remain to avoid breaking dependencies.
+   ========================================================================== */
+
+/* --- Icon font used by the original template (icomoon) --- */
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -5,11 +18,12 @@
   font-weight: normal;
   font-style: normal;
 }
-/* =======================================================
-*
-* 	Template Style 
-*
-* ======================================================= */
+
+/* ==========================================================================
+   TEMPLATE STYLES (original theme)
+   ========================================================================== */
+
+/* --- Base typography & global elements (body, links, headings, selection) --- */
 body {
   font-family: "Work Sans", Arial, sans-serif;
   font-weight: 400;
@@ -84,6 +98,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #0070BB;
 }
 
+/* --- Navigation (template navbar) --- */
 .fh5co-nav {
   position: absolute;
   top: 0;
@@ -221,12 +236,19 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-nav ul li.active > a {
   color: #fff !important;
 }
+
+/* --- CUSTOM: this site is single-page; hide the template navbar entirely --- */
 .fh5co-nav,
 #fh5co-menu-wrap,
 .js-fh5co-nav-toggle {
     display: none !important;
 }
 
+/* ==========================================================================
+   TEMPLATE: Background helpers & cover sections
+   ========================================================================== */
+
+/* --- Background helpers (full-width sections with background images) --- */
 #fh5co-counter,
 #fh5co-event,
 .fh5co-bg {
@@ -243,12 +265,10 @@ h1, h2, h3, h4, h5, h6, figure {
   position: relative;
 }
 
+/* --- Video block (used by template gallery/video sections) --- */
 .fh5co-video {
   height: 450px;
   overflow: hidden;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
   border-radius: 7px;
 }
 .fh5co-video a {
@@ -263,42 +283,30 @@ h1, h2, h3, h4, h5, h6, figure {
   display: table;
   text-align: center;
   background: #fff;
-  -webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
 .fh5co-video a i {
-  text-align: center;
   display: table-cell;
   vertical-align: middle;
   font-size: 40px;
 }
 .fh5co-video .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
 }
 .fh5co-video:hover .overlay {
   background: rgba(0, 0, 0, 0.7);
 }
 .fh5co-video:hover a {
-  position: relative;
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
   transform: scale(1.2);
 }
+
+/* ==========================================================================
+   TEMPLATE: Hero / cover layout
+   ========================================================================== */
 
 .fh5co-cover {
   height: 900px;
@@ -308,12 +316,8 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 100%;
 }
 .fh5co-cover .overlay {
-  z-index: 0;
   position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
 }
 .fh5co-cover > .fh5co-container {
@@ -325,6 +329,8 @@ h1, h2, h3, h4, h5, h6, figure {
     height: 600px;
   }
 }
+
+/* Table-based vertical centering (template pattern) */
 .fh5co-cover .display-t,
 .fh5co-cover .display-tc {
   height: 900px;
@@ -337,6 +343,8 @@ h1, h2, h3, h4, h5, h6, figure {
     height: 600px;
   }
 }
+
+/* Smaller cover variant */
 .fh5co-cover.fh5co-cover-sm {
   height: 600px;
 }
@@ -358,11 +366,17 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+/* ==========================================================================
+   TEMPLATE: Event & counter sections
+   ========================================================================== */
+
 #fh5co-counter,
 #fh5co-event {
   height: 850px;
   float: left;
 }
+
+/* Vertical centering inside event/counter sections */
 #fh5co-counter .display-t,
 #fh5co-counter .display-tc,
 #fh5co-event .display-t,
@@ -371,6 +385,8 @@ h1, h2, h3, h4, h5, h6, figure {
   display: table;
   width: 100%;
 }
+
+/* White headings on dark background */
 #fh5co-counter .fh5co-heading h2,
 #fh5co-event .fh5co-heading h2 {
   color: #fff;
@@ -383,15 +399,16 @@ h1, h2, h3, h4, h5, h6, figure {
   letter-spacing: 2px;
   font-weight: 600;
 }
+
+/* Section overlay */
 #fh5co-counter .overlay,
 #fh5co-event .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
 }
+
+/* Mobile: let height grow naturally */
 @media screen and (max-width: 768px) {
   #fh5co-counter,
   #fh5co-event {
@@ -405,6 +422,8 @@ h1, h2, h3, h4, h5, h6, figure {
     height: inherit;
   }
 }
+
+/* Event cards */
 #fh5co-counter .event-wrap,
 #fh5co-event .event-wrap {
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -412,9 +431,6 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 30px;
   width: 100%;
   float: left;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
   border-radius: 4px;
 }
 @media screen and (max-width: 768px) {
@@ -423,27 +439,32 @@ h1, h2, h3, h4, h5, h6, figure {
     margin-bottom: 10px;
   }
 }
+
 #fh5co-counter .event-wrap h3,
 #fh5co-event .event-wrap h3 {
   font-size: 20px;
   color: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  display: block;
   padding-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-#fh5co-counter .event-wrap p, #fh5co-counter .event-wrap span,
+
+#fh5co-counter .event-wrap p,
+#fh5co-counter .event-wrap span,
 #fh5co-event .event-wrap p,
 #fh5co-event .event-wrap span {
   display: block;
   color: rgba(255, 255, 255, 0.8);
 }
+
 #fh5co-counter .event-wrap i,
 #fh5co-event .event-wrap i {
-  color: white;
+  color: #fff;
   font-size: 20px;
 }
+
+/* Two-column layout inside event cards */
 #fh5co-counter .event-wrap .event-col,
 #fh5co-event .event-wrap .event-col {
   width: 50%;
@@ -451,6 +472,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-bottom: 30px;
 }
 
+/* Counter section slightly shorter */
 #fh5co-counter {
   height: 600px;
 }
@@ -460,34 +482,15 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
-.lang-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 999;
-  width: 35px;
-  height: 35px;
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.lang-toggle:hover {
-  background: rgba(0, 0, 0, 0.6);
-  transform: scale(1.1);
-}
-
+/* --- Timeline component (wedding day schedule) --- */
+/* Two-column alternating timeline with a centred vertical line + circular badge icons */
 .timeline {
   list-style: none;
   padding: 20px 0 20px;
   position: relative;
 }
+
+/* Vertical centre line */
 .timeline:before {
   top: 0;
   bottom: 0;
@@ -498,15 +501,20 @@ h1, h2, h3, h4, h5, h6, figure {
   left: 50%;
   margin-left: 0px;
 }
+
+/* On very small screens the line shifts left (timeline collapses) */
 @media screen and (max-width: 480px) {
   .timeline:before {
     margin-left: -64px;
   }
 }
+
 .timeline > li {
   margin-bottom: 20px;
   position: relative;
 }
+
+/* Clear floats */
 .timeline > li:before, .timeline > li:after {
   content: " ";
   display: table;
@@ -514,17 +522,18 @@ h1, h2, h3, h4, h5, h6, figure {
 .timeline > li:after {
   clear: both;
 }
+
+/* Timeline “card” */
 .timeline > li > .timeline-panel {
   width: 40%;
   float: left;
   border: 1px solid #d4d4d4;
   padding: 30px;
   position: relative;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
   border-radius: 4px;
 }
+
+/* Little “speech bubble” arrow pointing to the centre line */
 .timeline > li > .timeline-panel:before {
   position: absolute;
   top: 80px;
@@ -547,6 +556,8 @@ h1, h2, h3, h4, h5, h6, figure {
   border-bottom: 14px solid transparent;
   content: " ";
 }
+
+/* Mobile: wider panel + arrow moves up */
 @media screen and (max-width: 480px) {
   .timeline > li > .timeline-panel {
     width: 75% !important;
@@ -558,6 +569,8 @@ h1, h2, h3, h4, h5, h6, figure {
     top: 31px;
   }
 }
+
+/* Circular badge in the middle (holds the icon image) */
 .timeline > li > .timeline-badge {
   width: 140px;
   height: 140px;
@@ -571,6 +584,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background-color: #6699CC;
   z-index: 100;
   border-radius: 50%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -581,6 +595,8 @@ h1, h2, h3, h4, h5, h6, figure {
   max-width: 50%;
   max-height: 50%;
 }
+
+/* Badge shrinks on very small screens */
 @media screen and (max-width: 480px) {
   .timeline > li > .timeline-badge {
     width: 60px;
@@ -588,6 +604,8 @@ h1, h2, h3, h4, h5, h6, figure {
     margin-left: -20px !important;
   }
 }
+
+/* Alternate rows: panel switches to the right */
 .timeline > li.timeline-inverted > .timeline-panel {
   float: right;
 }
@@ -604,6 +622,7 @@ h1, h2, h3, h4, h5, h6, figure {
   right: auto;
 }
 
+/* Timeline content helpers */
 .timeline-title {
   margin-top: 0;
 }
@@ -625,6 +644,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-top: 5px;
 }
 
+/* Tablet/mobile layout: line shifts left, panels become full-width (minus badge space) */
 @media (max-width: 992px) {
   ul.timeline:before {
     left: 90px;
@@ -660,6 +680,9 @@ h1, h2, h3, h4, h5, h6, figure {
     right: auto;
   }
 }
+
+/* --- Gallery grid (fh5co-gallery-list + hover overlay) --- */
+/* Masonry-ish flex grid with fixed-height tiles + dark hover overlay */
 #fh5co-gallery-list {
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
@@ -675,6 +698,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
   width: 100%;
 }
+
 #fh5co-gallery-list li {
   display: block;
   padding: 0;
@@ -687,16 +711,15 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
   clear: left;
   position: relative;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
   border-radius: 7px;
 }
+
 @media screen and (max-width: 480px) {
   #fh5co-gallery-list li {
     margin-left: 0;
   }
 }
+
 #fh5co-gallery-list li a {
   min-height: 400px;
   padding: 2em;
@@ -704,6 +727,8 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 100%;
   display: block;
 }
+
+/* Dark overlay on hover */
 #fh5co-gallery-list li a:before {
   position: absolute;
   top: 0;
@@ -712,18 +737,15 @@ h1, h2, h3, h4, h5, h6, figure {
   bottom: 0;
   content: "";
   z-index: 80;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
   border-radius: 7px;
   background: rgba(0, 0, 0, 0.2);
 }
 #fh5co-gallery-list li a:hover:before {
   background: rgba(0, 0, 0, 0.5);
 }
+
+/* Caption pinned near the bottom */
 #fh5co-gallery-list li a .case-studies-summary {
   width: auto;
   bottom: 2em;
@@ -754,6 +776,8 @@ h1, h2, h3, h4, h5, h6, figure {
     font-size: 20px;
   }
 }
+
+/* Tile widths (desktop/tablet/mobile) */
 #fh5co-gallery-list li.one-third {
   width: 32.3%;
 }
@@ -768,6 +792,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+/* --- Map block (template; used if embedding Google Map) --- */
 #map {
   width: 100%;
   height: 500px;
@@ -779,6 +804,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+/* --- Footer icons + contact list (template) --- */
 .fh5co-social-icons {
   margin: 0;
   padding: 0;
@@ -851,6 +877,7 @@ form label {
   font-weight: normal !important;
 }
 
+/* --- Vertical centring helpers used by header/cover/counter blocks --- */
 #fh5co-header .display-tc,
 #fh5co-counter .display-tc,
 .fh5co-cover .display-tc {
@@ -966,35 +993,37 @@ form label {
   margin-left: 3px;
 }
 
+/* ==========================================================================
+   TEMPLATE — Countdown styling (simplyCountdown.js)
+   ========================================================================== */
+
+/* Wrapper spacing under the countdown */
 .simply-countdown {
   margin-bottom: 2em;
 }
 
+/* Each countdown “bubble” (days / hours / minutes / seconds) */
 .simply-countdown > .simply-section {
   display: inline-block;
   width: 100px;
   height: 100px;
   background: rgba(0, 112, 187, 0.8);
   margin: 0 4px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
   position: relative;
+
+  /* Template animation: gentle breathing */
   animation: pulse 1s ease infinite;
 }
 
+/* Pulse animation used by countdown bubbles (and also by the heart icon below) */
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
+
+/* Inner container: table-cell trick for vertical centring */
 .simply-countdown > .simply-section > div {
   display: table-cell;
   vertical-align: middle;
@@ -1002,22 +1031,31 @@ form label {
   width: 100px;
 }
 
+/* Shared typography for the number + label */
 .simply-countdown > .simply-section .simply-amount,
 .simply-countdown > .simply-section .simply-word {
   display: block;
   color: white;
 }
 
+/* Big number (e.g. “123”) */
 .simply-countdown > .simply-section .simply-amount {
   font-size: 30px;
 }
 
+/* Label (days/hours/...) */
 .simply-countdown > .simply-section .simply-word {
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   font-size: 12px;
 }
 
+
+/* ==========================================================================
+   TEMPLATE — Section spacing utilities
+   ========================================================================== */
+
+/* Default vertical padding for main sections */
 #fh5co-testimonial,
 #fh5co-services,
 #fh5co-started,
@@ -1030,6 +1068,8 @@ form label {
   padding: 7em 0;
   clear: both;
 }
+
+/* Mobile: tighter vertical padding */
 @media screen and (max-width: 768px) {
   #fh5co-testimonial,
   #fh5co-services,
@@ -1044,9 +1084,15 @@ form label {
   }
 }
 
+/* Light grey background variant used by some sections */
 .fh5co-section-gray {
   background: rgba(0, 0, 0, 0.04);
 }
+
+
+/* ==========================================================================
+   TEMPLATE — Couple section layout (two columns + centre heart)
+   ========================================================================== */
 
 .couple-wrap {
   width: 90%;
@@ -1059,12 +1105,15 @@ form label {
   }
 }
 
+/* Decorative centre heart (hidden on mobile) */
 .heart {
   position: absolute;
   top: 4em;
   left: 0;
   right: 0;
   z-index: 99;
+
+  /* Reuses the same pulse animation as the countdown */
   animation: pulse 1s ease infinite;
 }
 .heart i {
@@ -1072,9 +1121,6 @@ form label {
   background: #fff;
   padding: 20px;
   color: #0070BB;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
 @media screen and (max-width: 768px) {
@@ -1083,6 +1129,7 @@ form label {
   }
 }
 
+/* Left/right halves (bride/groom blocks) */
 .couple-half {
   width: 50%;
   float: left;
@@ -1092,39 +1139,45 @@ form label {
     width: 100%;
   }
 }
+
+/* Names */
 .couple-half h3 {
   font-family: "Sacramento", Arial, serif;
   color: #0070BB;
   font-size: 30px;
 }
-.couple-half .groom, .couple-half .bride {
+
+/* Round portrait */
+.couple-half .groom,
+.couple-half .bride {
   float: left;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
   width: 150px;
   height: 150px;
 }
-.couple-half .groom img, .couple-half .bride img {
+.couple-half .groom img,
+.couple-half .bride img {
   width: 150px;
   height: 150px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
+
+/* Small screens: stack and shrink portraits */
 @media screen and (max-width: 480px) {
-  .couple-half .groom, .couple-half .bride {
+  .couple-half .groom,
+  .couple-half .bride {
     width: 100%;
     height: 140px;
   }
-  .couple-half .groom img, .couple-half .bride img {
+  .couple-half .groom img,
+  .couple-half .bride img {
     width: 120px;
     height: 120px;
     margin: 0 auto;
   }
 }
+
+/* Mirror layout: groom image right, bride image left */
 .couple-half .groom {
   float: right;
   margin-right: 5px;
@@ -1133,6 +1186,8 @@ form label {
   float: left;
   margin-left: 5px;
 }
+
+/* Text blocks padded to make space for portraits */
 .couple-half .desc-groom {
   padding-right: 180px;
   text-align: right;
@@ -1141,8 +1196,11 @@ form label {
   padding-left: 180px;
   text-align: left;
 }
+
+/* Mobile: remove portrait padding and centre text */
 @media screen and (max-width: 480px) {
-  .couple-half .groom, .couple-half .bride {
+  .couple-half .groom,
+  .couple-half .bride {
     margin-left: 0;
     margin-right: 0;
   }
@@ -1156,6 +1214,11 @@ form label {
   }
 }
 
+/* ==========================================================================
+   TEMPLATE — “Feature” blocks (centered + left icon variants)
+   ========================================================================== */
+
+/* Centered feature block (icon in a circle above text) */
 .feature-center {
   text-align: center;
   padding-left: 20px;
@@ -1169,18 +1232,19 @@ form label {
     margin-bottom: 50px;
   }
 }
+
+/* Icon circle */
 .feature-center .icon {
   width: 90px;
   height: 90px;
   background: #efefef;
-  display: table;
+  display: table;            /* table-cell trick for vertical centring */
   text-align: center;
   margin: 0 auto 30px auto;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
+
+/* Icon glyph */
 .feature-center .icon i {
   display: table-cell;
   vertical-align: middle;
@@ -1189,21 +1253,35 @@ form label {
   line-height: 40px;
   color: #0070BB;
 }
-.feature-center p, .feature-center h3 {
+
+/* Spacing under heading and paragraph */
+.feature-center p,
+.feature-center h3 {
   margin-bottom: 30px;
 }
+
+/* Feature title style */
 .feature-center h3 {
   text-transform: uppercase;
   font-size: 18px;
   color: #5d5d5d;
 }
 
+
+/* ==========================================================================
+   TEMPLATE — Section headings (fh5co-heading)
+   ========================================================================== */
+
 .fh5co-heading {
   margin-bottom: 5em;
 }
+
+/* Smaller heading variant used in some sections */
 .fh5co-heading.fh5co-heading-sm {
   margin-bottom: 2em;
 }
+
+/* Main section title (script font) */
 .fh5co-heading h2 {
   font-size: 60px;
   margin-bottom: 10px;
@@ -1212,21 +1290,29 @@ form label {
   color: #0070BB;
   font-family: "Sacramento", Arial, serif;
 }
+
+/* Secondary title */
 .fh5co-heading h3 {
   font-family: "Sacramento", Arial, serif;
   color: #0070BB;
   font-weight: bold;
 }
+
+/* Mobile: reduce the big title size */
 @media screen and (max-width: 768px) {
   .fh5co-heading h2 {
     font-size: 40px;
   }
 }
+
+/* Description paragraph under headings */
 .fh5co-heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
+
+/* Optional small “eyebrow” label above headings */
 .fh5co-heading span {
   text-transform: uppercase;
   font-size: 13px;
@@ -1235,12 +1321,19 @@ form label {
   color: rgba(0, 0, 0, 0.4);
 }
 
+
+/* ==========================================================================
+   TEMPLATE — Testimonials slider (not used if testimonial section removed)
+   ========================================================================== */
+
 #fh5co-testimonial .wrap-testimony {
   position: relative;
 }
+
 #fh5co-testimonial .wrap-testimony .testimony-slide {
   text-align: center;
 }
+
 #fh5co-testimonial .wrap-testimony .testimony-slide span {
   font-size: 12px;
   text-transform: uppercase;
@@ -1248,10 +1341,13 @@ form label {
   font-weight: 700;
   display: block;
 }
+
 #fh5co-testimonial .wrap-testimony .testimony-slide span a.twitter {
   color: #0070BB;
   font-weight: 300;
 }
+
+/* Round avatar */
 #fh5co-testimonial .wrap-testimony .testimony-slide figure {
   margin-bottom: 10px;
   display: -moz-inline-stack;
@@ -1264,19 +1360,15 @@ form label {
 #fh5co-testimonial .wrap-testimony .testimony-slide figure img {
   width: 100px;
   height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
+
+/* Quote box */
 #fh5co-testimonial .wrap-testimony .testimony-slide blockquote {
   border: none;
   margin: 30px auto;
   width: 50%;
   position: relative;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
   border-radius: 4px;
 }
 @media screen and (max-width: 992px) {
@@ -1290,9 +1382,13 @@ form label {
   font-size: 20px;
   line-height: 1.6em;
 }
+
+/* Active slide */
 #fh5co-testimonial .wrap-testimony .testimony-slide.active {
   display: block;
 }
+
+/* Prev/Next arrows */
 #fh5co-testimonial .wrap-testimony .arrow-thumb {
   position: absolute;
   top: 40%;
@@ -1303,9 +1399,16 @@ form label {
   font-size: 32px;
   color: #dadada;
 }
-#fh5co-testimonial .wrap-testimony .arrow-thumb a:hover, #fh5co-testimonial .wrap-testimony .arrow-thumb a:focus, #fh5co-testimonial .wrap-testimony .arrow-thumb a:active {
+#fh5co-testimonial .wrap-testimony .arrow-thumb a:hover,
+#fh5co-testimonial .wrap-testimony .arrow-thumb a:focus,
+#fh5co-testimonial .wrap-testimony .arrow-thumb a:active {
   text-decoration: none;
 }
+
+
+/* ==========================================================================
+   TEMPLATE — “Feature left” blocks (icon on the left, text on the right)
+   ========================================================================== */
 
 .feature-left {
   float: left;
@@ -1316,6 +1419,8 @@ form label {
 .feature-left:last-child {
   margin-bottom: 0;
 }
+
+/* Small icon circle with shadow */
 .feature-left .icon {
   float: left;
   margin-right: 5%;
@@ -1324,12 +1429,7 @@ form label {
   background: #fff;
   display: table;
   text-align: center;
-  -webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
   border-radius: 50%;
 }
 @media screen and (max-width: 768px) {
@@ -1337,12 +1437,16 @@ form label {
     margin-right: 5%;
   }
 }
+
+/* Icon glyph */
 .feature-left .icon i {
   display: table-cell;
   vertical-align: middle;
   font-size: 30px;
   color: #0070BB;
 }
+
+/* Text column */
 .feature-left .feature-copy {
   float: left;
   width: 80%;
@@ -1353,6 +1457,8 @@ form label {
     float: left;
   }
 }
+
+/* Feature title */
 .feature-left .feature-copy h3 {
   text-transform: uppercase;
   font-size: 18px;
@@ -1360,9 +1466,15 @@ form label {
   margin-bottom: 10px;
 }
 
+/* ==========================================================================
+   TEMPLATE — “Started” section (CTA block with overlay + form styling)
+   ========================================================================== */
+
 #fh5co-started {
   position: relative;
 }
+
+/* Dark overlay over the background image */
 #fh5co-started .overlay {
   position: absolute;
   top: 0;
@@ -1371,37 +1483,33 @@ form label {
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
 }
-#fh5co-started .fh5co-heading h2 {
-  color: #fff;
-}
-#fh5co-started .fh5co-heading p {
-  color: rgba(255, 255, 255, 0.5);
-}
+
+/* White heading text on dark background */
+#fh5co-started .fh5co-heading h2 { color: #fff; }
+#fh5co-started .fh5co-heading p  { color: rgba(255, 255, 255, 0.5); }
+
+/* Input styles inside the CTA section (transparent, white text) */
 #fh5co-started .form-control {
   background: rgba(255, 255, 255, 0.2);
   border: none !important;
   color: #fff;
   font-size: 16px !important;
   width: 100%;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
 }
-#fh5co-started .form-control::-webkit-input-placeholder {
-  color: #fff;
-}
-#fh5co-started .form-control:-moz-placeholder {
-  color: #fff;
-}
-#fh5co-started .form-control::-moz-placeholder {
-  color: #fff;
-}
-#fh5co-started .form-control:-ms-input-placeholder {
-  color: #fff;
-}
+
+/* Placeholder colours across browsers */
+#fh5co-started .form-control::-webkit-input-placeholder { color: #fff; }
+#fh5co-started .form-control:-moz-placeholder          { color: #fff; }
+#fh5co-started .form-control::-moz-placeholder         { color: #fff; }
+#fh5co-started .form-control:-ms-input-placeholder     { color: #fff; }
+
+/* Slightly brighter background on focus */
 #fh5co-started .form-control:focus {
   background: rgba(255, 255, 255, 0.3);
 }
+
+/* Template CTA button */
 #fh5co-started .btn {
   height: 54px;
   border: none !important;
@@ -1413,6 +1521,8 @@ form label {
   padding-left: 50px;
   padding-right: 50px;
 }
+
+/* Template form layout helpers */
 #fh5co-started .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
@@ -1420,12 +1530,19 @@ form label {
 #fh5co-started .form-inline .form-group .form-control {
   width: 100%;
 }
+
+/* Tighten spacing under the heading block */
 #fh5co-started .fh5co-heading {
   margin-bottom: 30px;
 }
 #fh5co-started .fh5co-heading h2 {
   margin-bottom: 0;
 }
+
+
+/* ==========================================================================
+   TEMPLATE — Footer small responsiveness helper
+   ========================================================================== */
 
 @media screen and (max-width: 768px) {
   #fh5co-footer .copyright .pull-left,
@@ -1438,13 +1555,20 @@ form label {
   display: block;
 }
 
+
+/* ==========================================================================
+   TEMPLATE — Owl Carousel dots (only relevant if Owl Carousel is used)
+   ========================================================================== */
+
 .owl-carousel .owl-controls .owl-dot span {
   background: #e6e6e6;
 }
-.owl-carousel .owl-controls .owl-dot span:hover, .owl-carousel .owl-controls .owl-dot span:focus {
+.owl-carousel .owl-controls .owl-dot span:hover,
+.owl-carousel .owl-controls .owl-dot span:focus {
   background: #cccccc;
 }
-.owl-carousel .owl-controls .owl-dot:hover span, .owl-carousel .owl-controls .owl-dot:focus span {
+.owl-carousel .owl-controls .owl-dot:hover span,
+.owl-carousel .owl-controls .owl-dot:focus span {
   background: #cccccc;
 }
 .owl-carousel .owl-controls .owl-dot.active span {
@@ -1452,52 +1576,43 @@ form label {
   border: 2px solid #0070BB;
 }
 
+
+/* ==========================================================================
+   TEMPLATE — Offcanvas menu (mobile slide-in menu)
+   NOTE: If you disabled the navbar/burger menu, this may no longer be used,
+   but it’s safe to keep if main.js still references it.
+   ========================================================================== */
+
 #fh5co-offcanvas {
   position: absolute;
   z-index: 1901;
   width: 270px;
   background: black;
-  top: 0;
   right: 0;
   top: 0;
   bottom: 0;
   padding: 45px 40px 40px 40px;
   overflow-y: auto;
-  -moz-transform: translateX(270px);
-  -webkit-transform: translateX(270px);
-  -ms-transform: translateX(270px);
-  -o-transform: translateX(270px);
+
   transform: translateX(270px);
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
 }
+
+/* When body has .offcanvas, the menu slides into view */
 .offcanvas #fh5co-offcanvas {
-  -moz-transform: translateX(0px);
-  -webkit-transform: translateX(0px);
-  -ms-transform: translateX(0px);
-  -o-transform: translateX(0px);
   transform: translateX(0px);
 }
-#fh5co-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
-}
-#fh5co-offcanvas a:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-#fh5co-offcanvas ul {
-  padding: 0;
-  margin: 0;
-}
-#fh5co-offcanvas ul li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-#fh5co-offcanvas ul li > ul {
-  padding-left: 20px;
-  display: none;
-}
+
+/* Menu link colours */
+#fh5co-offcanvas a { color: rgba(255, 255, 255, 0.5); }
+#fh5co-offcanvas a:hover { color: rgba(255, 255, 255, 0.8); }
+
+/* Reset list styles */
+#fh5co-offcanvas ul { padding: 0; margin: 0; }
+#fh5co-offcanvas ul li { padding: 0; margin: 0; list-style: none; }
+#fh5co-offcanvas ul li > ul { padding-left: 20px; display: none; }
+
+/* Dropdown indicator arrow */
 #fh5co-offcanvas ul li.offcanvas-has-dropdown > a {
   display: block;
   position: relative;
@@ -1506,28 +1621,24 @@ form label {
   position: absolute;
   right: 0px;
   font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   content: "\e921";
   font-size: 20px;
   color: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Rotate indicator when dropdown is open */
 #fh5co-offcanvas ul li.offcanvas-has-dropdown.active a:after {
-  -webkit-transform: rotate(-180deg);
-  -moz-transform: rotate(-180deg);
-  -ms-transform: rotate(-180deg);
-  -o-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
+
+
+/* ==========================================================================
+   TEMPLATE — Utility classes and “back to top” button
+   ========================================================================== */
 
 .uppercase {
   font-size: 14px;
@@ -1537,21 +1648,22 @@ form label {
   text-transform: uppercase;
 }
 
+/* “Go to top” floating button (shown when scrolling) */
 .gototop {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 999;
+
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
 }
 .gototop.active {
   opacity: 1;
   visibility: visible;
 }
+
 .gototop a {
   width: 50px;
   height: 50px;
@@ -1559,9 +1671,6 @@ form label {
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-align: center;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
   border-radius: 4px;
 }
 .gototop a i {
@@ -1569,24 +1678,40 @@ form label {
   display: table-cell;
   vertical-align: middle;
 }
-.gototop a:hover, .gototop a:active, .gototop a:focus {
+.gototop a:hover,
+.gototop a:active,
+.gototop a:focus {
   text-decoration: none;
   outline: none;
 }
 
+/* ==========================================================================
+   TEMPLATE — Mobile navigation toggle (hamburger icon)
+   ========================================================================== */
+
+/* Base clickable area */
 .fh5co-nav-toggle {
   width: 25px;
   height: 25px;
   cursor: pointer;
   text-decoration: none;
 }
-.fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
+
+/* Active state (icon lines slightly darker) */
+.fh5co-nav-toggle.active i::before,
+.fh5co-nav-toggle.active i::after {
   background: #444;
 }
-.fh5co-nav-toggle:hover, .fh5co-nav-toggle:focus, .fh5co-nav-toggle:active {
+
+/* Remove focus / active outlines */
+.fh5co-nav-toggle:hover,
+.fh5co-nav-toggle:focus,
+.fh5co-nav-toggle:active {
   outline: none;
   border-bottom: none !important;
 }
+
+/* Central bar of the hamburger icon */
 .fh5co-nav-toggle i {
   position: relative;
   display: inline-block;
@@ -1595,11 +1720,14 @@ form label {
   color: #252525;
   font: bold 14px/.4 Helvetica;
   text-transform: uppercase;
-  text-indent: -55px;
+  text-indent: -55px; /* hides any text content */
   background: #252525;
   transition: all .2s ease-out;
 }
-.fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
+
+/* Top and bottom bars */
+.fh5co-nav-toggle i::before,
+.fh5co-nav-toggle i::after {
   content: '';
   width: 25px;
   height: 2px;
@@ -1608,104 +1736,107 @@ form label {
   left: 0;
   transition: all .2s ease-out;
 }
+
+/* White variant (used over dark backgrounds in the template) */
 .fh5co-nav-toggle.fh5co-nav-white > i {
   color: #fff;
   background: #fff;
 }
-.fh5co-nav-toggle.fh5co-nav-white > i::before, .fh5co-nav-toggle.fh5co-nav-white > i::after {
+.fh5co-nav-toggle.fh5co-nav-white > i::before,
+.fh5co-nav-toggle.fh5co-nav-white > i::after {
   background: #fff;
 }
 
+/* Positioning of top and bottom bars */
 .fh5co-nav-toggle i::before {
   top: -7px;
 }
-
 .fh5co-nav-toggle i::after {
   bottom: -7px;
 }
 
+/* Hover animation (bars move further apart) */
 .fh5co-nav-toggle:hover i::before {
   top: -10px;
 }
-
 .fh5co-nav-toggle:hover i::after {
   bottom: -10px;
 }
 
+/* Active state: turn hamburger into an “X” */
 .fh5co-nav-toggle.active i {
   background: transparent;
 }
-
 .fh5co-nav-toggle.active i::before {
   top: 0;
-  -webkit-transform: rotateZ(45deg);
-  -moz-transform: rotateZ(45deg);
-  -ms-transform: rotateZ(45deg);
-  -o-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
 }
-
 .fh5co-nav-toggle.active i::after {
   bottom: 0;
-  -webkit-transform: rotateZ(-45deg);
-  -moz-transform: rotateZ(-45deg);
-  -ms-transform: rotateZ(-45deg);
-  -o-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
 }
 
+/* Absolute positioning in the header (mobile only) */
 .fh5co-nav-toggle {
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 10px;
-  z-index: 21;
   padding: 6px 0 0 0;
-  display: block;
-  margin: 0 auto;
-  display: none;
   height: 44px;
   width: 44px;
   z-index: 2001;
+  display: none; /* hidden on desktop */
   border-bottom: none !important;
 }
+
+/* Show toggle on small screens */
 @media screen and (max-width: 768px) {
   .fh5co-nav-toggle {
     display: block;
   }
 }
 
+/* ==========================================================================
+   TEMPLATE — Buttons (base styles + colour variants)
+   ========================================================================== */
+
+/* Base button */
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
   font-family: "Work Sans", Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
   border-radius: 30px;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
   transition: 0.5s;
   padding: 8px 20px;
 }
+
+/* Size modifiers */
 .btn.btn-md {
   padding: 8px 20px !important;
 }
 .btn.btn-lg {
   padding: 18px 36px !important;
 }
-.btn:hover, .btn:active, .btn:focus {
+
+/* Remove focus / active artefacts */
+.btn:hover,
+.btn:active,
+.btn:focus {
   box-shadow: none !important;
   outline: none !important;
 }
 
+/* --- Primary button (main accent colour) --- */
 .btn-primary {
   background: #0070BB;
   color: #fff;
   border: 2px solid #0070BB;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
   background: #f366a3 !important;
   border-color: #f366a3 !important;
 }
@@ -1714,17 +1845,18 @@ form label {
   color: #0070BB;
   border: 2px solid #0070BB;
 }
-.btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
+.btn-primary.btn-outline:hover {
   background: #0070BB;
   color: #fff;
 }
 
+/* --- Success button --- */
 .btn-success {
   background: #5cb85c;
   color: #fff;
   border: 2px solid #5cb85c;
 }
-.btn-success:hover, .btn-success:focus, .btn-success:active {
+.btn-success:hover {
   background: #4cae4c !important;
   border-color: #4cae4c !important;
 }
@@ -1733,17 +1865,18 @@ form label {
   color: #5cb85c;
   border: 2px solid #5cb85c;
 }
-.btn-success.btn-outline:hover, .btn-success.btn-outline:focus, .btn-success.btn-outline:active {
+.btn-success.btn-outline:hover {
   background: #5cb85c;
   color: #fff;
 }
 
+/* --- Info button --- */
 .btn-info {
   background: #5bc0de;
   color: #fff;
   border: 2px solid #5bc0de;
 }
-.btn-info:hover, .btn-info:focus, .btn-info:active {
+.btn-info:hover {
   background: #46b8da !important;
   border-color: #46b8da !important;
 }
@@ -1752,17 +1885,18 @@ form label {
   color: #5bc0de;
   border: 2px solid #5bc0de;
 }
-.btn-info.btn-outline:hover, .btn-info.btn-outline:focus, .btn-info.btn-outline:active {
+.btn-info.btn-outline:hover {
   background: #5bc0de;
   color: #fff;
 }
 
+/* --- Warning button --- */
 .btn-warning {
   background: #f0ad4e;
   color: #fff;
   border: 2px solid #f0ad4e;
 }
-.btn-warning:hover, .btn-warning:focus, .btn-warning:active {
+.btn-warning:hover {
   background: #eea236 !important;
   border-color: #eea236 !important;
 }
@@ -1771,17 +1905,18 @@ form label {
   color: #f0ad4e;
   border: 2px solid #f0ad4e;
 }
-.btn-warning.btn-outline:hover, .btn-warning.btn-outline:focus, .btn-warning.btn-outline:active {
+.btn-warning.btn-outline:hover {
   background: #f0ad4e;
   color: #fff;
 }
 
+/* --- Danger button --- */
 .btn-danger {
   background: #d9534f;
   color: #fff;
   border: 2px solid #d9534f;
 }
-.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+.btn-danger:hover {
   background: #d43f3a !important;
   border-color: #d43f3a !important;
 }
@@ -1790,72 +1925,61 @@ form label {
   color: #d9534f;
   border: 2px solid #d9534f;
 }
-.btn-danger.btn-outline:hover, .btn-danger.btn-outline:focus, .btn-danger.btn-outline:active {
+.btn-danger.btn-outline:hover {
   background: #d9534f;
   color: #fff;
 }
 
+/* --- Generic outline button --- */
 .btn-outline {
   background: none;
   border: 2px solid gray;
   font-size: 16px;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
   transition: 0.3s;
 }
-.btn-outline:hover, .btn-outline:focus, .btn-outline:active {
+.btn-outline:hover {
   box-shadow: none;
 }
 
+/* --- Button with animated arrow (template feature) --- */
 .btn.with-arrow {
   position: relative;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
   transition: 0.3s;
 }
 .btn.with-arrow i {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 50%;
   margin-top: -8px;
-  -webkit-transition: 0.2s;
-  -o-transition: 0.2s;
   transition: 0.2s;
 }
 .btn.with-arrow:hover {
   padding-right: 50px;
 }
 .btn.with-arrow:hover i {
-  color: #fff;
   right: 18px;
   visibility: visible;
   opacity: 1;
 }
 
-.btn.btn-sm:hover {
-  background-color: #f1c40f; /* change to your preferred color */
-  color: #fff;               /* text color on hover */
-  transform: scale(1.05);    /* subtle zoom effect */
-  transition: all 0.3s ease; /* smooth animation */
-  cursor: pointer;           /* makes it clear it’s clickable */
-}
-.btn.btn-lg:hover {
-  background-color: #f1c40f; /* change to your preferred color */
-  color: #fff;               /* text color on hover */
-  transform: scale(1.05);    /* subtle zoom effect */
-  transition: all 0.3s ease; /* smooth animation */
-  cursor: pointer;           /* makes it clear it’s clickable */
-}
+/* --- Custom hover enhancements for wedding site --- */
+.btn.btn-sm:hover,
+.btn.btn-lg:hover,
 .btn.btn-block:hover {
-  background-color: #f1c40f; /* change to your preferred color */
-  color: #fff;               /* text color on hover */
-  transform: scale(1.05);    /* subtle zoom effect */
-  transition: all 0.3s ease; /* smooth animation */
-  cursor: pointer;           /* makes it clear it’s clickable */
+  background-color: #f1c40f; /* accent hover colour */
+  color: #fff;
+  transform: scale(1.05);    /* subtle zoom */
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
+/* ==========================================================================
+   TEMPLATE — Forms, spacing utilities, loader, and animation helpers
+   ========================================================================== */
+
+/* --- Template form fields (Bootstrap-ish look with theme accent on focus) --- */
 .form-control {
   box-shadow: none;
   background: transparent;
@@ -1864,34 +1988,38 @@ form label {
   font-size: 18px;
   font-weight: 300;
 }
-.form-control:active, .form-control:focus {
+.form-control:active,
+.form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #0070BB;
+  border-color: #0070BB; /* theme accent */
 }
 
+/* --- Template spacing utilities (used as section padding helpers) --- */
 .row-pb-md {
   padding-bottom: 4em !important;
 }
-
 .row-pb-sm {
   padding-bottom: 2em !important;
 }
 
+/* --- Template loader overlay (shown while the page initialises) --- */
 .fh5co-loader {
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
   background: url(../images/loader.gif) center no-repeat #fff;
 }
 
+/* --- Template animation hook: elements start hidden, fade in via JS/Waypoints --- */
 .js .animate-box {
   opacity: 0;
 }
 
+/* --- Plugin: Magnific Popup (video sizing inside the lightbox) --- */
 .mfp-content video {
   max-width: 90vw;
   max-height: 80vh;
@@ -1901,67 +2029,78 @@ form label {
   margin: 0 auto;
 }
 
-/* --- Fix floats inside event-wrap so .event-col stays 2 columns --- */
+/* ==========================================================================
+   CUSTOM — Event section layout fixes (2 columns + equal height + embedded map)
+
+   These rules adjust the original template's "event-wrap" cards so that:
+   - The two `.event-col` blocks reliably stay side-by-side.
+   - The two main event columns (text + map) match height on desktop/tablet.
+   - The map iframe scales nicely and remains readable on mobile.
+   ========================================================================== */
+
+/* --- Fix float clearing inside event-wrap so `.event-col` behaves as 2 columns --- */
 #fh5co-event .event-wrap::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* --- Equal height columns (desktop/tablet) --- */
+/* --- Equal height columns for the two main event blocks (desktop/tablet) --- */
 @media (min-width: 768px) {
+
+  /* Make the row a flex container so its children stretch equally */
   #fh5co-event .equal-height-row {
     display: flex;
-    align-items: stretch; /* makes both columns same height */
+    align-items: stretch; /* both columns match height */
   }
 
-  /* Bootstrap 3 columns are floats; allow flex to manage sizing */
+  /* Bootstrap 3 columns are floats: disable floats and use flex instead */
   #fh5co-event .equal-height-row > [class*="col-"] {
     float: none;
-    display: flex;          /* so the card can stretch */
-    flex-direction: column;
+    display: flex;
+    flex-direction: column; /* allow the card inside to stretch */
   }
 
-  /* Make the card fill the column height */
+  /* Ensure the event "card" fills its column */
   #fh5co-event .equal-height-row .event-wrap {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
 
-  /* Map: keep title centered; center the map area between title line and bottom */
+  /* Map card: let the map area expand to fill remaining height */
   #fh5co-event .event-wrap--map .map-body {
-    flex: 1;                 /* take remaining space after the title */
+    flex: 1;              /* fills vertical space under the title */
     display: flex;
-    align-items: center;     /* vertical centering of iframe */
+    align-items: center;  /* vertically centre the iframe */
   }
 
+  /* Map iframe styling (desktop/tablet) */
   #fh5co-event .event-wrap--map .event-map {
     width: 100%;
     height: 100%;
-    min-height: 250px;       /* so it looks good even if text box is short */
+    min-height: 250px;    /* avoids tiny map if the text side is short */
     border: 0;
     border-radius: 10px;
   }
 }
 
-/* Two-column layout inside Event box */
+/* --- Two-column layout inside each event card (icons + text split) --- */
 #fh5co-event .event-cols {
   display: flex;
   margin-bottom: 30px;
 }
-
 #fh5co-event .event-col {
   width: 50%;
 }
 
-/* Keep icons and text aligned nicely */
+/* Icon alignment inside event columns */
 #fh5co-event .event-col i {
   display: block;
   margin-bottom: 10px;
 }
 
-/* Mobile: keep normal stacking */
+/* --- Mobile: map stacks naturally and uses a fixed height --- */
 @media (max-width: 767px) {
   #fh5co-event .event-map {
     width: 100%;
@@ -1971,36 +2110,53 @@ form label {
   }
 }
 
-/* Make the "info" and "gift" sections behave like other FH5CO sections */
+
+/* ==========================================================================
+   CUSTOM — Info & Gift sections + gift lists
+
+   These are wedding-site additions:
+   - Make `#fh5co-info` look like a standard FH5CO grey section.
+   - Keep headings consistent with other sections.
+   - Create clean, readable two-column gift lists (no "card" styling).
+   ========================================================================== */
+
+/* Match heading spacing with other sections */
 #fh5co-info .fh5co-heading,
 #fh5co-gift .fh5co-heading {
-  margin-bottom: 30px; /* same style as #fh5co-started */
+  margin-bottom: 30px; /* same vibe as #fh5co-started */
 }
+
+/* Grey section background (same as `.fh5co-section-gray`) */
 #fh5co-info {
-  background: rgba(0, 0, 0, 0.04); /* same as .fh5co-section-gray */
+  background: rgba(0, 0, 0, 0.04);
 }
+
+/* Optional h3 styling inside info (romantic font + theme colour) */
 #fh5co-info h3 {
   font-family: "Sacramento", Arial, serif;
-  font-size: 40px;      /* optional: closer to h2 vibe */
-  color: #0070BB;       /* optional: match section headings */
-  margin-bottom: 10px;  /* optional */
+  font-size: 40px;
+  color: #0070BB;
+  margin-bottom: 10px;
 }
+
+/* Strong labels in the info columns */
 #fh5co-info .col-md-4 strong {
   display: block;
   font-weight: 600;
 }
 
+/* Avoid extra bottom spacing in the heading blocks */
 #fh5co-info p:last-child,
 #fh5co-gift p:last-child {
-  margin-bottom: 0; /* avoids extra bottom space inside the heading block */
+  margin-bottom: 0;
 }
 
-/* Inline gift lists */
+/* --- Gift lists layout (two columns) --- */
 .gift-lists--inline {
   margin-top: 2.5em;
 }
 
-/* Titles: same romantic font as h2 */
+/* Section subtitle (same font as main headings, smaller size) */
 .gift-subtitle {
   font-family: "Sacramento", Arial, serif;
   font-size: 34px;
@@ -2008,14 +2164,14 @@ form label {
   margin-bottom: 18px;
 }
 
-/* Clean list */
+/* Plain list (no bullets) */
 .gift-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Spacing between destinations */
+/* Spacing between list items */
 .gift-list li {
   margin-bottom: 16px;
 }
@@ -2028,7 +2184,7 @@ form label {
   line-height: 1.3;
 }
 
-/* Description: lowercase + italic */
+/* Destination description (italic, lighter) */
 .gift-list li span {
   display: block;
   font-style: italic;
@@ -2039,33 +2195,42 @@ form label {
   text-transform: none;
 }
 
+/* Extra breathing room around the whole gift block */
 .gift-lists--inline {
   margin: 3.5em 0;
   padding-top: 0.5em;
 }
 
-/* Mobile: stack nicely */
+/* Mobile: stack the two gift columns */
 @media (max-width: 768px) {
   .gift-lists--inline .col-md-6 + .col-md-6 {
     margin-top: 2em;
   }
 }
 
+/* ==========================================================================
+   CUSTOM — Gift IBAN block + language switcher + info modals + password gate
+   ========================================================================== */
+/* --- IBAN / bank details block (gift section) --- */
+
 .iban-row{
   margin-top: 3em;
 }
 
+/* Column wrapper: centred, padded, looks good inside the grey section */
 .iban-col{
   text-align: center;
   padding: 10px 30px;
 }
 
+/* Desktop: add a subtle divider between the two IBAN columns */
 @media (min-width: 768px){
   .iban-col + .iban-col{
     border-left: 1px solid rgba(0,0,0,.08);
   }
 }
 
+/* Bank heading (e.g. "Switzerland / Italy") */
 .iban-col h4{
   font-family: "Work Sans", Arial, serif;
   font-size: 20px;
@@ -2073,23 +2238,31 @@ form label {
   margin-bottom: 8px;
 }
 
-/* IBAN itself */
-.iban-col .iban-code{
-  font-family: monospace;
+/* The IBAN itself: monospace + tabular digits for alignment */
+.iban-col .iban-text{
+  font-family: "SF Mono", "Menlo", "Roboto Mono", monospace;
   font-size: 15px;
   letter-spacing: .04em;
   color: #000;
-  margin-bottom: 4px;   /* 👈 tighter spacing */
+
+  /* Fix: iOS/Telegram WebView sometimes applies different colours to parts of text */
+  -webkit-text-fill-color: #000;
+  text-decoration: none !important;
+
+  font-variant-numeric: tabular-nums;
+  word-break: break-word; /* wrap on small screens */
 }
 
-/* Small explanatory note */
+/* Small explanatory note under the IBAN (no extra bottom margin) */
 .iban-col .iban-note{
   font-size: 14px;
   color: #888;
-  margin-bottom: 0;     /* 👈 no extra space */
+  margin-bottom: 0;
 }
 
-/* --- Language toggle switch --- */
+
+/* --- Language toggle switch (EN/IT) --- */
+/* Wrapper is hidden by default; JS adds `.active` when it should appear */
 .lang-toggle-wrap{
   position: fixed;
   top: 20px;
@@ -2101,21 +2274,20 @@ form label {
   transform: translateY(-6px);
   transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
-
 .lang-toggle-wrap.active{
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* Hide the real checkbox */
+/* Hide the real checkbox; the label below is the visible control */
 .lang-toggle-input{
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-/* The switch body */
+/* The visible switch body */
 .lang-toggle-switch{
   position: relative;
   width: 74px;
@@ -2123,30 +2295,37 @@ form label {
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 0 10px;
   cursor: pointer;
   user-select: none;
+
   transition: background .25s ease, transform .2s ease;
   backdrop-filter: blur(6px);
 }
 
-/* Optional hover micro-zoom (desktop only) */
+/* Hover micro-zoom (desktop only) */
 @media (hover:hover){
-  .lang-toggle-switch:hover{ transform: scale(1.06); background: rgba(0,0,0,.5); }
+  .lang-toggle-switch:hover{
+    transform: scale(1.06);
+    background: rgba(0,0,0,.5);
+  }
 }
 
+/* EN / IT labels inside the switch */
 .lang-toggle-label{
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .06em;
   color: rgba(255,255,255,.75);
-  z-index: 2;
+  z-index: 2; /* keep text above the knob */
 }
 
-/* Knob */
+/* The moving knob */
 .lang-toggle-knob{
   position: absolute;
   top: 3px;
@@ -2159,12 +2338,12 @@ form label {
   transition: transform .25s ease;
 }
 
-/* Checked = English */
+/* Checked = English (knob moves right) */
 .lang-toggle-input:checked + .lang-toggle-switch .lang-toggle-knob{
   transform: translateX(40px);
 }
 
-/* Make the active side label brighter */
+/* Make the currently active label brighter */
 .lang-toggle-input:not(:checked) + .lang-toggle-switch .lang-toggle-label--it{
   color: #fff;
 }
@@ -2172,39 +2351,37 @@ form label {
   color: #fff;
 }
 
-/* Remove blue outline but keep accessibility */
+/* Keep a visible focus ring for keyboard users */
 .lang-toggle-input:focus + .lang-toggle-switch{
   outline: 2px solid rgba(0,112,187,.35);
   outline-offset: 3px;
 }
 
-/* --- Smaller footer --- */
-#fh5co-footer{
-  padding: 2.2em 0;          /* was 7em */
-}
 
+/* --- Footer sizing tweaks (custom override) --- */
+#fh5co-footer{
+  padding: 2.2em 0; /* reduced from the template (was 7em) */
+}
 @media screen and (max-width: 768px){
   #fh5co-footer{
-    padding: 1.6em 0;        /* was 3em */
+    padding: 1.6em 0; /* reduced mobile padding (was 3em) */
   }
 }
 
-/* Reduce extra margins inside footer */
+/* Reduce extra spacing inside footer */
 #fh5co-footer p{
   margin-bottom: 8px;
 }
-
 #fh5co-footer .copyright{
   margin-top: 0;
   padding-top: 0;
 }
-
 #fh5co-footer .fh5co-social-icons{
   margin-top: 8px;
   margin-bottom: 0;
 }
 
-/* --- Clickable 3 lines --- */
+/* --- Info openers (buttons that open the modals) --- */
 .info-openers{
   margin-top: 2.5em;
 }
@@ -2212,7 +2389,7 @@ form label {
 .info-opener{
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: center;         /* vertically centre title + icon */
   justify-content: space-between;
 
   background: #fff;
@@ -2225,56 +2402,79 @@ form label {
   cursor: pointer;
   text-align: left;
 
+  overflow: visible;           /* prevent clipping of font descenders */
   transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 
+/* Title (Sacramento font needs a tiny optical offset to look centred) */
 .info-opener__title{
   font-family: "Sacramento", Arial, serif;
   font-size: 34px;
   color: #0070BB;
-  line-height: 1;
+
+  line-height: 1.15;
+  padding-bottom: 0;
+
+  position: relative;
+  top: 0.08em;                 /* optical centring (tweak if needed) */
 }
 
-.info-opener__hint{
-  font-size: 13px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,.45);
+/* Blue info icon at the right */
+.info-opener__icon{
+  font-size: 18px;
+  color: #0070BB;
+  flex-shrink: 0;
+  margin-left: 14px;
+  opacity: 0.9;
+  line-height: 1;              /* keep the icon tight */
 }
 
+/* Hover lift (desktop only) */
 @media (hover:hover){
   .info-opener:hover{
     transform: translateY(-3px);
     box-shadow: 0 18px 40px -26px rgba(0,0,0,.45);
     border-color: rgba(0,112,187,.25);
   }
+  .info-opener:hover .info-opener__icon{
+    opacity: 1;
+  }
 }
 
-/* Remove "stuck" active highlight on click */
+/* Remove click artefacts (but you still get the custom focus outline elsewhere) */
 .info-opener:focus,
 .info-opener:active{
   outline: none;
   box-shadow: none;
 }
 
-/* --- Modal --- */
+/* Slightly smaller title on very small screens */
+@media (max-width: 480px){
+  .info-opener__title{
+    font-size: 30px;
+  }
+}
+
+
+/* --- Modal (overlay + panel) --- */
 .fh5co-modal{
   position: fixed;
   inset: 0;
   z-index: 2000;
-  display: none;
+  display: none; /* hidden by default; JS toggles `.is-open` */
 }
-
 .fh5co-modal.is-open{
   display: block;
 }
 
+/* Dark overlay behind the modal */
 .fh5co-modal__overlay{
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.55);
 }
 
+/* Modal panel */
 .fh5co-modal__panel{
   position: relative;
   width: min(860px, calc(100% - 32px));
@@ -2290,11 +2490,13 @@ form label {
   animation: modalIn .18s ease-out;
 }
 
+/* Small entrance animation */
 @keyframes modalIn{
   from { transform: translateY(10px); opacity: .75; }
   to   { transform: translateY(0);   opacity: 1; }
 }
 
+/* Close button (top-right) */
 .fh5co-modal__close{
   position: absolute;
   top: 10px;
@@ -2309,6 +2511,7 @@ form label {
   cursor: pointer;
 }
 
+/* Modal title */
 .fh5co-modal__title{
   font-family: "Sacramento", Arial, serif;
   font-size: 44px;
@@ -2317,35 +2520,31 @@ form label {
   margin-bottom: 18px;
 }
 
+/* Content list inside modal */
 .fh5co-modal__list{
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .fh5co-modal__list li{
   padding: 14px 0;
   border-top: 1px solid rgba(0,0,0,.06);
 }
-
 .fh5co-modal__list li:first-child{
   border-top: 0;
   padding-top: 0;
 }
-
 .fh5co-modal__list strong{
   display: block;
   text-align: center;
   color: #000;
   margin-bottom: 6px;
 }
-
 .fh5co-modal__list p{
   margin: 0 0 8px 0;
   color: #666;
   text-align: center;
 }
-
 .fh5co-modal__list a{
   display: inline-block;
   width: 100%;
@@ -2353,4 +2552,132 @@ form label {
   font-weight: 600;
 }
 
+/* Lock body scroll while a modal is open (used by the modal JS) */
+body.modal-open{
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
 
+/* --- Password gate (full-screen overlay shown on first visit per session) --- */
+
+/* NOTE: there are two #password-gate blocks in the file right now.
+   Keep only one in your final CSS (prefer the later one with is-hiding),
+   otherwise you'll have duplicated declarations fighting each other. */
+
+/* Base overlay */
+#password-gate{
+  position: fixed;
+  inset: 0;
+  z-index: 3000; /* sits above the rest of the site */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.96);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .28s ease, visibility .28s ease;
+}
+
+/* Visible state (JS adds this) */
+#password-gate.is-visible{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hiding state (JS adds this for fade-out) */
+#password-gate.is-hiding{
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Dialog box */
+.password-box{
+  width: min(380px, 90%);
+  text-align: center;
+
+  padding: 34px 28px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 30px 60px rgba(0,0,0,.15);
+
+  transform: translateY(8px);
+  opacity: .95;
+  transition: transform .28s ease, opacity .28s ease;
+}
+
+/* Pop-in when visible */
+#password-gate.is-visible .password-box{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.password-box h2{
+  font-family: "Sacramento", Arial, serif;
+  font-size: 44px;
+  color: #0070BB;
+  margin: 0 0 10px 0;
+}
+
+.password-text{
+  margin: 0 0 18px 0;
+  color: #666;
+}
+
+.pw-line{
+  display: block;
+  line-height: 1.35;
+}
+
+/* Input */
+#password-input{
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  outline: none;
+  margin: 0 0 14px 0;
+}
+#password-input:focus{
+  border-color: rgba(0,112,187,.6);
+  box-shadow: 0 0 0 3px rgba(0,112,187,.12);
+}
+
+/* Submit button */
+#password-submit{
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+
+  background: #0070BB;
+  color: #fff;
+
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#password-submit:hover{
+  background: #005fa0;
+}
+
+/* Error line (shown by JS only when wrong password) */
+.password-error{
+  display: none;
+  color: #c0392b;
+  margin: 12px 0 0 0;
+  font-size: 14px;
+}
+
+/* Lock scroll while the password overlay is open (used by password JS) */
+body.password-locked{
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}

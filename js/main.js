@@ -233,13 +233,20 @@
 
 // --- Info modals (open/close) ---
 (function(){
+	var lastScrollY = 0;
+	var supportsFixed = true;
+	
   function openModal(id){
     var modal = document.getElementById(id);
     if(!modal) return;
 
+    // Remember scroll position and lock background scroll (mobile/webviews)
+    lastScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = (-lastScrollY) + 'px';
+    document.body.classList.add('modal-open');
+
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
   }
 
   function closeModal(modal){
@@ -247,7 +254,11 @@
 
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
+
+    // Unlock scroll and restore position
     document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, lastScrollY);
   }
 
   // Open on click

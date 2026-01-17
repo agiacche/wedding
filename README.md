@@ -1,25 +1,60 @@
-Thanks for downloading this theme!
+# Alessandro & Silvia — Wedding Website
 
-## Other Useful Links
+This repository contains the source code for **Alessandro & Silvia’s wedding website** (EN/IT), hosted with **GitHub Pages**.
 
-**ThemeWagon** is a great source for downloading free HTML templates built with the latest technology.
+## Features
 
-To download free templates, follow this link: https://themewagon.com/theme_tag/free/
+- **Bilingual content (EN/IT)** with a toggle switch
+- **Password gate** (session-based) to restrict access
+- **Countdown** to the wedding date
+- **RSVP link** to an external Google Form
+- **Photo galleries** with lightbox + optional hidden video
+- **Info modals** (Cities / Food / Nature) to keep pages compact
+- Responsive layout (Bootstrap-based)
 
-Besides that, you can buy our premium templates for making your web development experience unforgettable.
+## Structure
 
-Visit the store from here: https://themewagon.com/theme-categories/premium-templates/
+- `index.html` — main page (all sections + modal markup)
+- `css/` — stylesheets (template + custom tweaks in `style.css`)
+- `js/` — scripts:
+  - `main.js` — template behaviours
+  - `language-switcher.js` — EN/IT toggle logic
+  - `password-gate.js` — password overlay + scroll lock
+  - `simplyCountdown.js` + `countdown-init.js` — countdown + configuration
+  - `galleries.js` — Magnific Popup bindings for gallery groups
+- `images/` — images used across the website (hero, timeline icons, galleries, etc.)
 
-Alternatively, here's our top most trending and selling items:
+## Local development
 
-* [**Sparrow**](https://themewagon.com/themes/sparrow/) - A multipurpose template made with Bootstrap 4.1 and world's finest animation.
-* [**Posh**](https://themewagon.com/themes/posh-html5-bootstrap-4-template/) - Bootstrap 4 template with a myriad number of ready-to-deploy sections. 
-* [**Elixir**](https://themewagon.com/themes/elixir-elegant-html5-bootstrap-template-consultancy-agency-website/) - Bootstrap 4 agency template. Best for smooth animated scrolling. 
-* [**Freya**](https://themewagon.com/themes/bootstrap-4-premium-interior-design-template-freya/) - Interior design template made with Bootstrap 4. 
-* [**Reign Pro**](https://themewagon.com/themes/reign-pro-premium-corporate-agency-html5-template/) - A corporate template with a visually unique design scheme. 
-* [**Boots4**](https://themewagon.com/themes/first-ever-bootstrap-4-template/) - One of the first Bootstrap 4 templates ever made on earth. 
-* [**Hideaway**](https://themewagon.com/themes/hideaway/) - A template for resorts. Built with Bootstrap 4. 
-* [**Baikal**](https://themewagon.com/themes/bootstrap-4-startup-small-business-website-template/) - A smart Bootstrap template for start-up. 
-* [**Mega Discount**](https://themewagon.com/themes/mega-discount-bundle/) - A bundle of 26 HTML5 templates; best value for your money. 
+You can open `index.html` directly in a browser, but for best results use a local server.
 
+## Deployment (GitHub Pages)
 
+1. Push changes to the default branch (e.g. `main`).
+2. On GitHub, go to **Settings** → **Pages**.
+3. Select **Deploy from a branch**, choose the branch and **/ (root)**.
+4. Click **Save** — GitHub will publish the site at the provided Pages URL.
+
+## Credits / License
+
+This website is based on a free HTML5 template originally distributed via ThemeWagon / FreeHTML5.co.
+Original design credit remains with the template authors; see in-page footer credit.
+
+All custom content (text, images, and wedding-specific modifications) belongs to **Alessandro & Silvia**.
+
+## Technical notes
+
+- This project is based on a legacy HTML5 template that relies on `jQuery` and several classic plugins (Waypoints, Magnific Popup, Owl Carousel, etc.).
+- Not all bundled libraries are actively used by the current site, but some remain included because they are referenced internally by `main.js` or template styles.
+- JavaScript functionality is intentionally split into small, focused files:
+  - `main.js` handles template-wide behaviour (animations, scrolling, layout helpers).
+  - Custom features (language switcher, password gate, countdown initialisation, galleries) live in separate scripts to keep changes isolated and readable.
+- Content is duplicated per language using `data-lang` attributes and toggled at runtime; no build step or framework is used.
+- The site is entirely static and does not require any backend or build tooling.
+
+## Security note
+
+- The password gate is implemented entirely on the client side using JavaScript and `sessionStorage`.
+- It is intended only as a light deterrent to prevent casual access, not as a security mechanism.
+- The password is visible in the source code and can be bypassed by anyone with basic technical knowledge.
+- No sensitive or private data should be considered protected by this mechanism.
