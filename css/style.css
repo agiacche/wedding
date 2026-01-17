@@ -2559,6 +2559,15 @@ body.modal-open{
   overflow: hidden;
 }
 
+/* Lock background scroll when a lightbox/modal is open */
+body.mfp-scroll-lock{
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* --- Password gate (full-screen overlay shown on first visit per session) --- */
 
 /* NOTE: there are two #password-gate blocks in the file right now.
