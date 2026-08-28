@@ -1,76 +1,69 @@
 /**
  * Language switcher (EN / IT)
  *
- * This script handles:
- * - Toggling bilingual content using data attributes
- * - Activating the language toggle UI
- *
- * Language handling is intentionally simple:
- * - No persistence (language resets on refresh)
- * - No framework or build step
- * - Pure DOM + jQuery
+ * - Toggles bilingual content using data-lang attributes
+ * - Remembers the selected language in localStorage
+ * - Shares the preference across all pages of the site
  */
 
 $(document).ready(function () {
+  const STORAGE_KEY = 'wedding-language';
 
   /**
-   * Current language
-   * Default: Italian
+   * Restore the previously selected language.
+   * Italian remains the default.
    */
   let currentLang = 'it';
 
-  /**
-   * Switch visible language
-   *
-   * Elements must declare:
-   *   data-lang="it" or data-lang="en"
-   *
-   * Only elements matching the active language are shown.
-   */
+  try {
+    const storedLang = localStorage.getItem(STORAGE_KEY);
+
+    if (storedLang === 'it' || storedLang === 'en') {
+      currentLang = storedLang;
+    }
+  } catch (error) {
+    // If localStorage is unavailable, simply use Italian.
+  }
+
   function switchLang(lang) {
     $('[data-lang]').each(function () {
       $(this).toggle($(this).attr('data-lang') === lang);
     });
 
     /**
-     * Sync toggle UI
-     * Convention:
-     * - unchecked = IT
-     * - checked   = EN
+     * Toggle convention:
+     * unchecked = IT
+     * checked   = EN
      */
     $('#en-it').prop('checked', lang === 'en');
 
     currentLang = lang;
+
+    /**
+     * Also update the document language for accessibility.
+     */
+    document.documentElement.lang = lang;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch (error) {
+      // Language switching still works without persistence.
+    }
   }
 
-  // Initialise page with default language
   switchLang(currentLang);
 
-  /**
-   * React to toggle changes
-   */
   $('#en-it').on('change', function () {
-    const newLang = this.checked ? 'en' : 'it';
-    switchLang(newLang);
+    switchLang(this.checked ? 'en' : 'it');
   });
-
 });
 
 
 /**
  * Language toggle visibility / behaviour on scroll
- *
- * The toggle is shown as soon as JS runs
- * (password gate or other overlays may delay visibility via CSS).
- *
- * The scroll handler is intentionally minimal:
- * - Adds `.active` after the user scrolls a bit
- * - Allows CSS to handle transitions / opacity
  */
-
 const langButton = document.querySelector('.lang-toggle-wrap');
 
-// Make toggle visible once JS is active
 if (langButton) {
   langButton.classList.add('active');
 

@@ -1,0 +1,290 @@
+/* =========================================================
+   PHOTO BINGO — mobile-first
+   Common wedding-site styling still comes from css/style.css.
+   ========================================================= */
+
+html,
+body {
+  background: #fff;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+}
+
+.photo-bingo-main {
+  min-height: 100vh;
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    0
+    calc(30px + env(safe-area-inset-bottom));
+}
+
+.photo-bingo-intro {
+  margin-bottom: 22px;
+}
+
+.photo-bingo-title-wrap {
+  margin: 8px 0 18px;
+  padding: 0 48px;
+}
+
+.photo-bingo-title-wrap h1 {
+  font-family: "Sacramento", Arial, serif;
+  font-size: 46px;
+  line-height: 1;
+  color: #0070BB;
+  margin: 0 0 3px;
+}
+
+.photo-bingo-title-wrap h2 {
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0;
+}
+
+.photo-bingo-lead {
+  max-width: 620px;
+  margin: 0 auto 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #555;
+}
+
+.photo-bingo-rules {
+  max-width: 620px;
+  margin: 0 auto 12px;
+  padding: 14px 15px;
+  border-radius: 14px;
+  background: #f8f8f8;
+}
+
+.photo-bingo-rules p {
+  margin: 2px 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.photo-bingo-hunt {
+  margin: 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Progress */
+
+.photo-bingo-progress-wrap {
+  margin: 0 0 14px;
+}
+
+.photo-bingo-progress-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  color: #555;
+  font-size: 13px;
+}
+
+.photo-bingo-progress-top strong {
+  color: #0070BB;
+  font-size: 16px;
+}
+
+.photo-bingo-progress-track {
+  height: 6px;
+  background: rgba(0, 112, 187, 0.10);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.photo-bingo-progress-bar {
+  width: 0;
+  height: 100%;
+  background: #0070BB;
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+/* Two-column mobile grid */
+
+.photo-bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.photo-bingo-card {
+  position: relative;
+  width: 100%;
+  min-height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px 10px 14px;
+
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 13px;
+  background: #fff;
+
+  color: #444;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.37;
+  font-weight: 400;
+  text-align: center;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.045);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.photo-bingo-card:active {
+  transform: scale(0.98);
+}
+
+.photo-bingo-card:focus-visible {
+  outline: 3px solid rgba(0, 112, 187, 0.22);
+  outline-offset: 2px;
+}
+
+.photo-bingo-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(0, 112, 187, 0.11);
+  color: #0070BB;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  opacity: 0;
+  transform: scale(0.65);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.photo-bingo-card.is-complete {
+  background: rgba(0, 112, 187, 0.075);
+  border-color: rgba(0, 112, 187, 0.30);
+  color: #747474;
+  box-shadow: none;
+}
+
+.photo-bingo-card.is-complete > .lang-content {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.photo-bingo-card.is-complete .photo-bingo-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Completed */
+
+.photo-bingo-complete {
+  margin-top: 20px;
+  padding: 18px 16px;
+  border: 1px solid rgba(0, 112, 187, 0.18);
+  border-radius: 14px;
+  background: rgba(0, 112, 187, 0.055);
+  text-align: center;
+}
+
+.photo-bingo-complete h3 {
+  font-family: "Sacramento", Arial, serif;
+  font-size: 38px;
+  color: #0070BB;
+  margin: 0 0 3px;
+}
+
+.photo-bingo-complete p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Reset */
+
+.photo-bingo-reset-wrap {
+  margin-top: 20px;
+}
+
+.photo-bingo-reset {
+  padding: 6px 4px;
+  border: 0;
+  background: transparent;
+  color: #999;
+  font-size: 11px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.photo-bingo-reset:hover,
+.photo-bingo-reset:focus {
+  color: #666;
+}
+
+/* Very narrow phones */
+
+@media screen and (max-width: 360px) {
+  .photo-bingo-title-wrap {
+    padding: 0 40px;
+  }
+
+  .photo-bingo-title-wrap h1 {
+    font-size: 42px;
+  }
+
+  .photo-bingo-card {
+    min-height: 122px;
+    font-size: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+/* Larger screens: don't let cards become absurdly wide */
+
+@media screen and (min-width: 769px) {
+  .photo-bingo-main {
+    padding-top: 36px;
+  }
+
+  .photo-bingo-title-wrap h1 {
+    font-size: 54px;
+  }
+
+  .photo-bingo-card {
+    min-height: 132px;
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -369,8 +369,9 @@
 							<!-- RSVP button (external Google Form) -->
 							<p>
 							  <a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
-								 target="_blank"
-								 class="btn btn-default btn-sm">
+							     target="_blank"
+							     rel="noopener noreferrer"
+							     class="btn btn-default btn-sm">
 								<span class="lang-content" data-lang="en">Will you be there?</span>
 								<span class="lang-content" data-lang="it">Ci sarete?</span>
 							  </a>
@@ -1492,7 +1493,7 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<!-- EN -->
 					<h2 class="lang-content" data-lang="en">Are you attending?</h2>
-					<p class="lang-content" data-lang="en">Please fill-up the form to let us know if you're attending. Thanks!</p>
+					<p class="lang-content" data-lang="en">Please fill out the form to let us know if you're attending. Thanks!</p>
 					<!-- IT -->
 					<h2 class="lang-content" data-lang="it">Parteciperete?</h2>
 					<p class="lang-content" data-lang="it">Fatecelo sapere tramite il modulo RSVP. Grazie!</p>
@@ -1504,6 +1505,7 @@
 					  <div class="col-md-10 col-md-offset-1 text-center">
 						<a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
 						   target="_blank"
+						   rel="noopener noreferrer"
 						   class="btn btn-default btn-lg">
 						  <span class="lang-content" data-lang="en">RSVP form</span>
 						  <span class="lang-content" data-lang="it">Modulo RSVP</span>
@@ -1523,10 +1525,16 @@
 					<p>
 						<!-- EN -->
 						<small class="block" data-lang="en">&copy; 2026 Alessandro &amp; Silvia. All rights reserved.</small>
-						<small class="block" data-lang="en">Based on a design by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></small>
+						<small class="block" data-lang="en">
+						  Based on a design by
+						  <a href="https://freehtml5.co/" target="_blank" rel="noopener noreferrer">freehtml5.co</a>
+						</small>
 						<!-- IT -->
 						<small class="block" data-lang="it">&copy; 2026 Alessandro &amp; Silvia. Tutti i diritti riservati.</small>
-						<small class="block" data-lang="it">Basato su un design di <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></small>
+						<small class="block" data-lang="it">
+						  Basato su un design di
+						  <a href="https://freehtml5.co/" target="_blank" rel="noopener noreferrer">freehtml5.co</a>
+						</small>
 					</p>
 				</div>
 			</div>
@@ -1580,9 +1588,8 @@
 	<!-- Stellar (parallax background effect; used via data-stellar-background-ratio) -->
 	<script src="js/jquery.stellar.min.js"></script>
 
-	<!-- Magnific Popup (gallery lightbox + hidden video lightbox) -->
+	<!-- Magnific Popup library; gallery bindings are configured in galleries.js -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
 
 	<!-- Countdown plugin + site-specific initialisation -->
 	<script src="js/simplyCountdown.js"></script>

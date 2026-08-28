@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="no-js" lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Photo Bingo | Alessandro &amp; Silvia</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Photo Bingo — Alessandro & Silvia" />
+  <meta name="author" content="agiacche" />
+  <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/photo-bingo.css">
+
+  <script src="js/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body>
+
+  <!-- LANGUAGE SWITCHER -->
+  <div class="lang-toggle-wrap">
+    <input
+      type="checkbox"
+      id="en-it"
+      class="lang-toggle-input"
+      aria-label="Switch language">
+    <label for="en-it" class="lang-toggle-switch">
+      <span class="lang-toggle-label lang-toggle-label--it">IT</span>
+      <span class="lang-toggle-label lang-toggle-label--en">EN</span>
+      <span class="lang-toggle-knob"></span>
+    </label>
+  </div>
+
+  <div id="page">
+
+    <main class="photo-bingo-main">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+            <!-- TITLE + RULES -->
+            <section class="photo-bingo-intro text-center">
+
+              <div class="photo-bingo-title-wrap">
+                <h1>Alessandro &amp; Silvia</h1>
+                <h2>Photo Bingo</h2>
+              </div>
+
+              <div class="lang-content" data-lang="it">
+                <p class="photo-bingo-lead">
+                  Trova tra gli invitati le persone che corrispondono alle descrizioni
+                  e fai una foto insieme a loro.
+                </p>
+
+                <div class="photo-bingo-rules">
+                  <p><strong>Ogni foto vale per una sola categoria.</strong></p>
+                  <p>Puoi giocare da solo o in coppia.</p>
+                  <p>
+                    Quando hai completato tutte le categorie, vai da
+                    <strong>Giorgio</strong> e mostragli le foto.
+                  </p>
+                  <p>
+                    <strong>I primi due</strong> a completare la sfida vinceranno un premio.
+                  </p>
+                </div>
+
+                <p class="photo-bingo-hunt">
+                  Che inizi la caccia alle foto!
+                </p>
+              </div>
+
+              <div class="lang-content" data-lang="en">
+                <p class="photo-bingo-lead">
+                  Find guests who match the descriptions below and take a photo with them.
+                </p>
+
+                <div class="photo-bingo-rules">
+                  <p><strong>Each photo can count for one category only.</strong></p>
+                  <p>You can play on your own or as a pair.</p>
+                  <p>
+                    Once you have completed every category, find
+                    <strong>Giorgio</strong> and show him your photos.
+                  </p>
+                  <p>
+                    The <strong>first two</strong> to complete the challenge will win a prize.
+                  </p>
+                </div>
+
+                <p class="photo-bingo-hunt">
+                  Let the photo hunt begin!
+                </p>
+              </div>
+
+            </section>
+
+            <!-- PROGRESS -->
+            <section class="photo-bingo-progress-wrap" aria-live="polite">
+              <div class="photo-bingo-progress-top">
+                <span class="lang-content" data-lang="it">Completate</span>
+                <span class="lang-content" data-lang="en">Completed</span>
+                <strong id="bingo-progress-count">0 / 10</strong>
+              </div>
+
+              <div class="photo-bingo-progress-track" aria-hidden="true">
+                <div id="bingo-progress-bar" class="photo-bingo-progress-bar"></div>
+              </div>
+            </section>
+
+            <!-- BINGO GRID -->
+            <section
+              class="photo-bingo-grid"
+              aria-label="Photo Bingo challenges">
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="0" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che ha celebrato il matrimonio o ha fatto da testimone
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone who officiated the wedding or was a witness
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="1" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che parla tre o più lingue
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone who speaks three or more languages
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="2" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che ha meno di 25 anni
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone under 25
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="3" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che è nato in un continente diverso
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone born on a different continent
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="4" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che è imparentato con lo sposo
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone related to the groom
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="5" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che è imparentato con la sposa
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone related to the bride
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="6" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che è andato a scuola con uno degli sposi
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone who went to school with either of the newlyweds
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="7" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che non avevi mai incontrato prima di oggi
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone you had never met before today
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="8" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che ha conosciuto Silvia prima di Alessandro
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone who knew Silvia before Alessandro did
+                </span>
+              </button>
+
+              <button class="photo-bingo-card" type="button" data-bingo-id="9" aria-pressed="false">
+                <span class="photo-bingo-check" aria-hidden="true">✓</span>
+                <span class="lang-content" data-lang="it">
+                  Qualcuno che ha conosciuto Alessandro prima di Silvia
+                </span>
+                <span class="lang-content" data-lang="en">
+                  Someone who knew Alessandro before Silvia did
+                </span>
+              </button>
+
+            </section>
+
+            <!-- COMPLETION MESSAGE -->
+            <section id="bingo-complete" class="photo-bingo-complete" hidden>
+              <div class="lang-content" data-lang="it">
+                <h3>Fatto! 🎉</h3>
+                <p>Hai completato il Foto Bingo. Corri da Giorgio con le tue foto!</p>
+              </div>
+
+              <div class="lang-content" data-lang="en">
+                <h3>Done! 🎉</h3>
+                <p>You completed the Photo Bingo. Find Giorgio and show him your photos!</p>
+              </div>
+            </section>
+
+            <!-- RESET -->
+            <div class="photo-bingo-reset-wrap text-center">
+              <button id="bingo-reset" class="photo-bingo-reset" type="button">
+                <span class="lang-content" data-lang="it">Azzera il bingo</span>
+                <span class="lang-content" data-lang="en">Reset bingo</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/language-switcher.js"></script>
+  <script src="js/photo-bingo.js"></script>
+
+</body>
+</html>

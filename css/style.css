@@ -2600,10 +2600,6 @@ body.mfp-scroll-lock{
 
 /* --- Password gate (full-screen overlay shown on first visit per session) --- */
 
-/* NOTE: there are two #password-gate blocks in the file right now.
-   Keep only one in your final CSS (prefer the later one with is-hiding),
-   otherwise you'll have duplicated declarations fighting each other. */
-
 /* Base overlay */
 #password-gate{
   position: fixed;

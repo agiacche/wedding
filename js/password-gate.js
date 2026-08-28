@@ -21,7 +21,7 @@
   let lastScrollY = 0;
 
   // If already unlocked for this browser tab/session, remove gate immediately
-  if (sessionStorage.getItem("site_unlocked") === "1") {
+  if (localStorage.getItem("site_unlocked") === "1") {
     gate.remove();
     return;
   }
@@ -85,7 +85,7 @@
    */
   function checkPassword() {
     if (input.value === PASSWORD) {
-      sessionStorage.setItem("site_unlocked", "1");
+      localStorage.setItem("site_unlocked", "1");
       hideGate();
     } else {
       error.style.display = "block";
