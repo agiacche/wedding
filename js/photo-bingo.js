@@ -14,6 +14,7 @@
   const cards = Array.from(document.querySelectorAll('.photo-bingo-card'));
   const progressCount = document.getElementById('bingo-progress-count');
   const progressBar = document.getElementById('bingo-progress-bar');
+	const progressTrack = document.getElementById('bingo-progress-track');
   const completeMessage = document.getElementById('bingo-complete');
   const resetButton = document.getElementById('bingo-reset');
 
@@ -59,6 +60,12 @@
     if (progressBar) {
       progressBar.style.width = percent + '%';
     }
+
+	if (progressTrack) {
+	  progressTrack.setAttribute('aria-valuemax', String(total));
+	  progressTrack.setAttribute('aria-valuenow', String(done));
+	  progressTrack.setAttribute('aria-valuetext', done + ' / ' + total);
+	}
 
     if (completeMessage) {
       completeMessage.hidden = done !== total;

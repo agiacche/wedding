@@ -7,10 +7,10 @@ This repository contains the source code for Alessandro & Silvia’s wedding web
 ✨ Features
 
 * 🌍 Bilingual content (EN/IT) with a toggle switch
-* 🔒 Password gate on the main wedding page (session-based) to restrict casual access
-* ⏳ Countdown to the wedding date
-* 📝 RSVP link to an external Google Form
-* 🖼️ Photo galleries with lightbox + optional hidden video
+* 🔒 Password gate on the main wedding page (remembered on the same device) to restrict casual access
+* 📅 Complete-days counter since the wedding
+* 💙 Wedding-photo buttons that open the wedding album directly
+* 🖼️ Photo galleries with an accessible fullscreen photo/video viewer
 * 🧩 Info modals (Cities / Food / Nature) to keep pages compact
 * 📸 Photo Bingo game page, designed primarily for mobile access via QR code
 * 📱 Responsive layout (Bootstrap-based)
@@ -28,8 +28,8 @@ This repository contains the source code for Alessandro & Silvia’s wedding web
     * main.js — template behaviours
     * language-switcher.js — EN/IT toggle logic
     * password-gate.js — password overlay + scroll lock for the main page
-    * simplyCountdown.js + countdown-init.js — countdown + configuration
-    * galleries.js — Magnific Popup bindings for gallery groups
+    * days-since.js — complete-days counter using the configured wedding instant
+    * galleries.js — fullscreen photo/video viewer for gallery groups
     * photo-bingo.js — Photo Bingo interactions and local progress storage
 * images/ — images used across the website (hero, timeline icons, galleries, etc.)
 
@@ -61,11 +61,10 @@ All custom content (text, images, and wedding-specific modifications) belongs to
 
 🛠️ Technical notes
 
-* 🧱 This project is based on a legacy HTML5 template that relies on jQuery and classic plugins (Waypoints, Magnific Popup, Owl Carousel, etc.).
-* 🧹 Not all bundled libraries are actively used by every page, but some remain included because they are referenced internally by main.js or template styles.
+* 🧱 This project is based on a legacy HTML5 template that relies on jQuery and a small set of classic plugins such as Waypoints. The gallery viewer itself is dependency-free.
 * 🧩 JavaScript functionality is intentionally split into small, focused files:
     * main.js handles template-wide behaviour (animations, scrolling, layout helpers).
-    * Custom features (language switcher, password gate, countdown initialisation, galleries, Photo Bingo) live in separate scripts to keep changes isolated and readable.
+    * Custom features (language switcher, password gate, days-since counter, galleries, Photo Bingo) live in separate scripts to keep changes isolated and readable.
 * 🗣️ Content is duplicated per language using data-lang attributes and toggled at runtime; no build step or framework is used.
 * 📸 Photo Bingo progress is stored locally in the guest’s browser using localStorage; no account, database, or backend is required.
 * 📄 The site is entirely static and does not require any backend or build tooling.

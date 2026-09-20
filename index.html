@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="it"> <!--<![endif]-->
 	<head>
 	<!-- =========================================================
 	     HEAD / META
@@ -12,17 +12,25 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Alessandro &amp; Silvia</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="description" content="Celebrate with us!" />
 	<meta name="author" content="agiacche" />
+	<meta name="theme-color" content="#0070BB">
+	<link rel="canonical" href="https://agiacche.github.io/wedding/">
+	<link rel="icon" href="images/AS.jpg" type="image/jpeg">
 
 	<meta property="og:title" content="Alessandro &amp; Silvia wedding"/>
-	<meta property="og:image" content="images/AS.jpg"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:locale" content="it_IT"/>
+	<meta property="og:locale:alternate" content="en_GB"/>
+	<meta property="og:image" content="https://agiacche.github.io/wedding/images/AS.jpg"/>
+	<meta property="og:image:alt" content="Alessandro and Silvia"/>
 	<meta property="og:url" content="https://agiacche.github.io/wedding/"/>
 	<meta property="og:site_name" content="Alessandro &amp; Silvia"/>
 	<meta property="og:description" content="Join us in celebrating our special day!"/>
 	<meta name="twitter:title" content="Alessandro &amp; Silvia wedding" />
-	<meta name="twitter:image" content="images/AS.jpg" />
+	<meta name="twitter:image" content="https://agiacche.github.io/wedding/images/AS.jpg" />
+	<meta name="twitter:image:alt" content="Alessandro and Silvia" />
 	<meta name="twitter:url" content="https://agiacche.github.io/wedding/" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
@@ -39,8 +47,7 @@
 	     CSS / LIBRARIES
 	     - Font Awesome: info icon in the “info-opener” buttons
 	     - animate.css / icomoon / bootstrap: template dependencies
-	     - magnific popup: lightbox for galleries + hidden video
-	     - owl carousel: template dependency (used/expected by main.js)
+	     - custom fullscreen viewer for gallery photos and video
 	     - style.css: main theme stylesheet (custom tweaks live there)
 	     ========================================================= -->
 	<!-- font-awesome -->
@@ -51,13 +58,8 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css?v=20260920-2">
 
 	<!-- =========================================================
 	     JS (HEAD)
@@ -78,6 +80,7 @@
 
 	</head>
 	<body>
+	<a class="skip-link" href="#main-content">Skip to content / Vai al contenuto</a>
 
 	<!-- =========================================================
 	     PASSWORD GATE (overlay)
@@ -85,11 +88,11 @@
 	     - Controlled by js/password-gate.js
 	     ========================================================= -->
 	<div id="password-gate" aria-hidden="true">
-	  <div class="password-box" role="dialog" aria-label="Password">
+	  <div class="password-box" role="dialog" aria-modal="true" aria-labelledby="password-title" aria-describedby="password-instructions" tabindex="-1">
 
-	    <h2>Alessandro &amp; Silvia</h2>
+	    <h2 id="password-title">Alessandro &amp; Silvia</h2>
 
-	    <p class="password-text">
+	    <p class="password-text" id="password-instructions">
 	      <span class="pw-line pw-line--en">Please enter password</span>
 	      <span class="pw-line pw-line--it">Inserire password</span>
 	    </p>
@@ -97,8 +100,9 @@
 	    <input
 	      type="password"
 	      id="password-input"
+	      aria-label="Password"
 	      placeholder="Password"
-	      autocomplete="off"
+	      autocomplete="current-password"
 	      inputmode="text"
 	    >
 
@@ -106,7 +110,7 @@
 			<span class="pw-line">Enter / Entra</span>
 		</button>
 
-	    <p class="password-error">
+	    <p class="password-error" role="alert" aria-live="assertive">
 	      <span class="pw-line pw-line--en">Wrong password</span>
 	      <span class="pw-line pw-line--it">Password errata</span>
 	    </p>
@@ -123,9 +127,9 @@
 	     ========================================================= -->
 
 	<!-- CITIES MODAL -->
-	<div class="fh5co-modal" id="modal-cities" aria-hidden="true" role="dialog" aria-label="Cities">
+	<div class="fh5co-modal" id="modal-cities" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Cities / Città">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
-	  <div class="fh5co-modal__panel" role="document">
+	  <div class="fh5co-modal__panel" role="document" tabindex="-1">
 		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
 		<!-- EN -->
@@ -186,9 +190,9 @@
 	</div>
 
 	<!-- FOOD MODAL -->
-	<div class="fh5co-modal" id="modal-food" aria-hidden="true" role="dialog" aria-label="Food">
+	<div class="fh5co-modal" id="modal-food" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Food / Cibo">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
-	  <div class="fh5co-modal__panel" role="document">
+	  <div class="fh5co-modal__panel" role="document" tabindex="-1">
 		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
 		<!-- EN -->
@@ -249,9 +253,9 @@
 	</div>
 
 	<!-- NATURE MODAL -->
-	<div class="fh5co-modal" id="modal-nature" aria-hidden="true" role="dialog" aria-label="Nature">
+	<div class="fh5co-modal" id="modal-nature" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Nature / Natura">
 	  <div class="fh5co-modal__overlay" data-close="true"></div>
-	  <div class="fh5co-modal__panel" role="document">
+	  <div class="fh5co-modal__panel" role="document" tabindex="-1">
 		<button class="fh5co-modal__close" type="button" data-close="true" aria-label="Close">×</button>
 
 		<!-- EN -->
@@ -337,14 +341,14 @@
 	
 	<!-- =========================================================
 	     MAIN PAGE CONTENT
-	     - Header (hero + countdown + RSVP button)
+	     - Header (hero + days-since counter + wedding photos button)
 	     - Couple section
 	     - Where/When + Map section
 	     - Timeline
 	     - Accommodation + info openers -> modals
-	     - Gallery (Magnific Popup)
+	     - Gallery (custom fullscreen viewer)
 	     - Gift (IBAN info)
-	     - RSVP section (external Google Form)
+	     - Thank-you section
 	     - Footer
 	     ========================================================= -->
 	<div id="page">
@@ -363,17 +367,19 @@
 							<!-- IT -->
 							<h2 class="lang-content" data-lang="it">30 Agosto 2026</h2>
 
-							<!-- Countdown UI (initialised in js/countdown-init.js using simplyCountdown.js) -->
-							<div class="simply-countdown simply-countdown-one"></div>
+							<!-- Complete days elapsed since the configured wedding instant -->
+							<p class="days-since" data-days-since aria-live="polite">
+								<span class="lang-content" data-lang="en"><strong data-days-since-value>0</strong> days since we said YES!</span>
+								<span class="lang-content" data-lang="it"><strong data-days-since-value>0</strong> giorni dal nostro SÌ!</span>
+							</p>
 
-							<!-- RSVP button (external Google Form) -->
+							<!-- Opens the wedding album at its first image -->
 							<p>
-							  <a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
-							     target="_blank"
-							     rel="noopener noreferrer"
-							     class="btn btn-default btn-sm">
-								<span class="lang-content" data-lang="en">Will you be there?</span>
-								<span class="lang-content" data-lang="it">Ci sarete?</span>
+							  <a href="images/to-be-continued.jpg"
+							     class="btn btn-default btn-sm"
+							     data-gallery-open="gallery-2026">
+								<span class="lang-content" data-lang="en">Wedding photos</span>
+								<span class="lang-content" data-lang="it">Foto del matrimonio</span>
 							  </a>
 							</p>
 						</div>
@@ -382,6 +388,7 @@
 			</div>
 		</div>
 	</header>
+	<main id="main-content" tabindex="-1">
 
 	<!-- COUPLE SECTION -->
 	<div id="fh5co-couple">
@@ -400,7 +407,7 @@
 			<div class="couple-wrap animate-box">
 				<div class="couple-half">
 					<div class="groom">
-						<img src="images/groom.jpeg" alt="groom" class="img-responsive">
+						<img src="images/groom.jpeg" alt="Alessandro" class="img-responsive" decoding="async">
 					</div>
 					<div class="desc-groom">
 						<h3>Alessandro</h3>
@@ -417,7 +424,7 @@
 				<p class="heart text-center"><i class="icon-heart2"></i></p>
 				<div class="couple-half">
 					<div class="bride">
-						<img src="images/bride.jpeg" alt="bride" class="img-responsive">
+						<img src="images/bride.jpeg" alt="Silvia" class="img-responsive" decoding="async">
 					</div>
 					<div class="desc-bride">
 						<h3>Silvia</h3>
@@ -518,25 +525,15 @@
 
 			  <div class="col-md-6 col-sm-6 text-center">
 				<div class="event-wrap animate-box event-wrap--map">
-				  <!-- EN -->
-				  <h3 class="lang-content" data-lang="en">Map</h3>
+				  <h3>
+					<span class="lang-content" data-lang="en">Map</span>
+					<span class="lang-content" data-lang="it">Mappa</span>
+				  </h3>
 
-				  <div class="map-body lang-content" data-lang="en">
+				  <div class="map-body">
 					<iframe
 					  class="event-map"
-					  src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
-					  allowfullscreen=""
-					  loading="lazy"
-					  referrerpolicy="no-referrer-when-downgrade">
-					</iframe>
-				  </div>
-
-				  <!-- IT -->
-				  <h3 class="lang-content" data-lang="it">Mappa</h3>
-
-				  <div class="map-body lang-content" data-lang="it">
-					<iframe
-					  class="event-map"
+					  title="Villa Merlo Dragoni map"
 					  src="https://www.google.com/maps?q=46.0173557,13.3009380&z=15&output=embed"
 					  allowfullscreen=""
 					  loading="lazy"
@@ -567,7 +564,7 @@
 					<ul class="timeline animate-box">
 						<li class="animate-box">
 							<div class="timeline-badge">
-								<img src="images/marriage.png" alt="Ceremony" />
+								<img src="images/marriage.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -588,7 +585,7 @@
 						</li>
 						<li class="timeline-inverted animate-box">
 							<div class="timeline-badge">
-								<img src="images/cocktail.png" alt="Apéro" />
+								<img src="images/cocktail.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -609,7 +606,7 @@
 						</li>
 						<li class="timeline animate-box">
 							<div class="timeline-badge">
-								<img src="images/romantic-dinner.png" alt="Reception" />
+								<img src="images/romantic-dinner.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -630,7 +627,7 @@
 						</li>
 						<li class="timeline-inverted animate-box">
 							<div class="timeline-badge">
-								<img src="images/wedding-cake.png" alt="Cake Cutting" />
+								<img src="images/wedding-cake.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -651,7 +648,7 @@
 						</li>
 						<li class="timeline animate-box">
 							<div class="timeline-badge">
-								<img src="images/dance.png" alt="Party" />
+								<img src="images/dance.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -672,7 +669,7 @@
 						</li>
 						<li class="timeline-inverted animate-box">
 							<div class="timeline-badge">
-								<img src="images/live-music.png" alt="Live Music" />
+								<img src="images/live-music.png" alt="" loading="lazy" decoding="async" />
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -804,48 +801,39 @@
 				<div class="col-md-12">
 					<ul id="fh5co-gallery-list">
 
-					<!-- Main photo BEFORE -->
-					<li class="one-third animate-box" style="background-image: url(images/2013.jpg);"> 
-						<a href="images/2013.jpg" class="gallery-before" title="Piancavallo, 2013">
+					<!-- Main photo 2017 and before -->
+					<li class="one-third animate-box" data-bg-image="images/2012-Sardegna.jpg">
+						<a href="images/2012-Sardegna.jpg" class="gallery-2017-and-before" title="Sardegna, 2012">
 							<div class="case-studies-summary">
-								<span class="lang-content" data-lang="en">3 Photos</span>
-								<span class="lang-content" data-lang="it">3 Foto</span>
-								<h2 class="lang-content" data-lang="en">Before 2017</h2>
-								<h2 class="lang-content" data-lang="it">Prima del 2017</h2>
+								<span class="lang-content" data-lang="en">7 Photos</span>
+								<span class="lang-content" data-lang="it">7 Foto</span>
+								<h2 class="lang-content" data-lang="en">2017 and before</h2>
+								<h2 class="lang-content" data-lang="it">2017 e prima</h2>
 							</div>
 						</a>
 					</li>
-					<!-- Gallery BEFORE -->
+					<!-- Gallery 2017 and before: pre-2017 images first, then 2017 -->
 					<li style="display:none;">
-						<a href="images/2013-Piancavallo.jpg" class="gallery-before" title="Piancavallo, 2013"></a>
+						<a href="images/2013.jpg" class="gallery-2017-and-before" title="Piancavallo, 2013"></a>
 					</li>
 					<li style="display:none;">
-						<a href="images/2012-Sardegna.jpg" class="gallery-before" title="Sardegna, 2012"></a>
-					</li>
-
-					<!-- Main photo 2017 -->
-					<li class="one-third animate-box" style="background-image: url(images/2017.jpg);"> 
-						<a href="images/2017.jpg" class="gallery-2017" title="Trieste, 2017">
-							<div class="case-studies-summary">
-								<span class="lang-content" data-lang="en">4 Photos</span>
-								<span class="lang-content" data-lang="it">4 Foto</span>
-								<h2>2017</h2>
-							</div>
-						</a>
-					</li>
-					<!-- Gallery 2017 -->
-					<li style="display:none;">
-						<a href="images/2017-Natale.jpg" class="gallery-2017" title="Pordenone, 2017"></a>
+						<a href="images/2013-Piancavallo.jpg" class="gallery-2017-and-before" title="Piancavallo, 2013"></a>
 					</li>
 					<li style="display:none;">
-						<a href="images/2017-Londra-1.jpg" class="gallery-2017" title="Londra, 2017"></a>
+						<a href="images/2017.jpg" class="gallery-2017-and-before" title="Trieste, 2017"></a>
 					</li>
 					<li style="display:none;">
-						<a href="images/2017-Londra-2.jpg" class="gallery-2017" title="Londra, 2017"></a>
+						<a href="images/2017-Natale.jpg" class="gallery-2017-and-before" title="Pordenone, 2017"></a>
+					</li>
+					<li style="display:none;">
+						<a href="images/2017-Londra-1.jpg" class="gallery-2017-and-before" title="Londra, 2017"></a>
+					</li>
+					<li style="display:none;">
+						<a href="images/2017-Londra-2.jpg" class="gallery-2017-and-before" title="Londra, 2017"></a>
 					</li>
 
 					<!-- Main photo 2018 -->
-					<li class="one-third animate-box" style="background-image: url(images/2018.jpg);"> 
+					<li class="one-third animate-box" data-bg-image="images/2018.jpg">
 						<a href="images/2018.jpg" class="gallery-2018" title="Dandolo, 2018">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">6 Photos</span>
@@ -873,7 +861,7 @@
 
 
 					<!-- Main photo 2019 -->
-					<li class="one-third animate-box" style="background-image: url(images/2019.jpg);"> 
+					<li class="one-third animate-box" data-bg-image="images/2019.jpg">
 						<a href="images/2019.jpg" class="gallery-2019" title="Amsterdam, 2019">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">8 Photos</span>
@@ -906,7 +894,7 @@
 					</li>
 
 					<!-- Main photo 2020 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2020.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2020.jpg">
 						<a href="images/2020.jpg" class="gallery-2020" title="Sicilia, 2020">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">8 Photos</span>
@@ -939,7 +927,7 @@
 					</li>
 
 					<!-- Main photo 2021 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2021.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2021.jpg">
 						<a href="images/2021.jpg" class="gallery-2021" title="Tarvisio, 2021">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">6 Photos</span>
@@ -966,7 +954,7 @@
 					</li>
 
 					<!-- Main photo 2022 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2022.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2022.jpg">
 						<a href="images/2022.jpg" class="gallery-2022" title="Parigi, 2022">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">8 Photos</span>
@@ -999,7 +987,7 @@
 					</li>
 
 					<!-- Main photo 2023 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2023.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2023.jpg">
 						<a href="images/2023.jpg" class="gallery-2023" title="Zurigo, 2023">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">13 Photos</span>
@@ -1047,7 +1035,7 @@
 					</li>
 
 					<!-- Main photo 2024 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2024.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2024.jpg">
 						<a href="images/2024.jpg" class="gallery-2024" title="Gili, 2024">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">12 Photos</span>
@@ -1092,7 +1080,7 @@
 					</li>
 
 					<!-- Main photo 2025 -->
-					 <li class="one-third animate-box" style="background-image: url(images/2025.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/2025.jpg">
 						<a href="images/2025.jpg" class="gallery-2025" title="Davos, 2025">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">11 Photos</span>
@@ -1133,20 +1121,8 @@
 						<a href="images/2025-Australia-3.jpg" class="gallery-2025" title="Melbourne, 2025"></a>
 					</li>
 
-
-					<!-- Main photo 2026 -->
-					 <li class="one-third animate-box" style="background-image: url(images/to-be-continued.jpg);"> 
-						<a href="images/to-be-continued.jpg" class="gallery-2026">
-							<div class="case-studies-summary">
-								<!--<span class="lang-content" data-lang="en">? Photos</span>-->
-								<!--<span class="lang-content" data-lang="it">? Foto</span>-->
-								<h2>2026</h2>
-							</div>
-						</a>
-					</li>
-
 					<!-- Main photo Nacho -->
-					 <li class="one-third animate-box" style="background-image: url(images/Nacho/2022-10-Trieste-2.jpg);"> 
+					 <li class="one-third animate-box" data-bg-image="images/Nacho/2022-10-Trieste-2.jpg">
 						<a href="images/Nacho/2022-10-Trieste-2.jpg" class="gallery-Nacho" title="Trieste, ottobre 2022">
 							<div class="case-studies-summary">
 								<span class="lang-content" data-lang="en">48 Photos</span>
@@ -1298,6 +1274,25 @@
 					<li style="display:none;">
 						<a href="images/Nacho/2025-10-Zurigo.jpg" class="gallery-Nacho" title="Zurigo, ottobre 2025"></a>
 					</li>
+
+					<!-- Main photo 2026 wedding album -->
+					<li class="one-third animate-box" data-bg-image="images/to-be-continued.jpg">
+						<a href="images/to-be-continued.jpg" class="gallery-2026">
+							<div class="case-studies-summary">
+								<h2>30/08/2026</h2>
+							</div>
+						</a>
+					</li>
+
+					<!-- Main photo Honeymoon -->
+					<li class="one-third animate-box" data-bg-image="images/to-be-continued.jpg">
+						<a href="images/to-be-continued.jpg" class="gallery-honeymoon">
+							<div class="case-studies-summary">
+								<h2 class="lang-content" data-lang="en">Honeymoon</h2>
+								<h2 class="lang-content" data-lang="it">Luna di miele</h2>
+							</div>
+						</a>
+					</li>
 					</ul>		
 				</div>
 			</div>
@@ -1325,7 +1320,7 @@
 				  <h4 class="gift-subtitle">From the bride’s list</h4>
 				  <ul class="gift-list">
 					<li>
-					  <strong>Tanzania &amp; Seychelles</strong>
+					  <strong>Tanzania &amp; Zanzibar</strong>
 					  <span>for a safari and a bit of relaxation</span>
 					</li>
 					<li>
@@ -1387,7 +1382,7 @@
 				  <h4 class="gift-subtitle">Dalla lista della sposa</h4>
 				  <ul class="gift-list">
 					<li>
-					  <strong>Tanzania &amp; Seychelles</strong>
+					  <strong>Tanzania &amp; Zanzibar</strong>
 					  <span>per un safari e un po’ di relax</span>
 					</li>
 					<li>
@@ -1485,30 +1480,29 @@
 	  </div>
 	</div>
 
-	<!-- ATTENDING? SECTION -->
+	<!-- THANK-YOU SECTION -->
 	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/location2.jpeg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<!-- EN -->
-					<h2 class="lang-content" data-lang="en">Are you attending?</h2>
-					<p class="lang-content" data-lang="en">Please fill out the form to let us know if you're attending. Thanks!</p>
+					<h2 class="lang-content" data-lang="en">Thank you</h2>
+					<p class="lang-content" data-lang="en">for being part of our journey!</p>
 					<!-- IT -->
-					<h2 class="lang-content" data-lang="it">Parteciperete?</h2>
-					<p class="lang-content" data-lang="it">Fatecelo sapere tramite il modulo RSVP. Grazie!</p>
+					<h2 class="lang-content" data-lang="it">Grazie</h2>
+					<p class="lang-content" data-lang="it">di essere parte del nostro viaggio!</p>
 				</div>
 			</div>
 			<div class="row animate-box">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="row animate-box">
 					  <div class="col-md-10 col-md-offset-1 text-center">
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLScXcSLdGUb6AR2n9k9NzuHk2xEFgAUlPqlnu2G8zaQMNXOTfA/viewform?usp=header"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="btn btn-default btn-lg">
-						  <span class="lang-content" data-lang="en">RSVP form</span>
-						  <span class="lang-content" data-lang="it">Modulo RSVP</span>
+						<a href="images/to-be-continued.jpg"
+						   class="btn btn-default btn-lg"
+						   data-gallery-open="gallery-2026">
+						  <span class="lang-content" data-lang="en">Wedding photos</span>
+						  <span class="lang-content" data-lang="it">Foto del matrimonio</span>
 						</a>
 					  </div>
 					</div>
@@ -1516,6 +1510,8 @@
 			</div>
 		</div>
 	</div>
+
+	</main>
 
 	<!-- FOOTER -->
 	<footer id="fh5co-footer" role="contentinfo">
@@ -1543,12 +1539,11 @@
 	</div>
 
 	<!-- =========================================================
-	     HIDDEN VIDEO (Magnific Popup)
+	     HIDDEN VIDEO SOURCE
 	     - Opened as a lightbox from the gallery via href="#nacho-video"
 	     ========================================================= -->
-	<div id="nacho-video" class="mfp-hide">
-	  <video width="100%" controls>
-		<source src="images/Nacho/2023-06-Dandolo.mp4" type="video/mp4">
+	<div id="nacho-video" hidden>
+	  <video width="100%" controls playsinline preload="metadata">
 		<source src="images/Nacho/2023-06-Dandolo.MOV" type="video/quicktime">
 		Your browser does not support the video tag.
 	  </video>
@@ -1579,32 +1574,22 @@
 	<!-- Waypoints (triggers animations when scrolling into view) -->
 	<script src="js/jquery.waypoints.min.js"></script>
 
-	<!-- Owl Carousel (required/expected by js/main.js; even if no carousel is used) -->
-	<script src="js/owl.carousel.min.js"></script>
-
-	<!-- CountTo (template “counter” plugin; may be unused depending on page sections) -->
-	<script src="js/jquery.countTo.js"></script>
-
 	<!-- Stellar (parallax background effect; used via data-stellar-background-ratio) -->
 	<script src="js/jquery.stellar.min.js"></script>
 
-	<!-- Magnific Popup library; gallery bindings are configured in galleries.js -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-
-	<!-- Countdown plugin + site-specific initialisation -->
-	<script src="js/simplyCountdown.js"></script>
-	<script src="js/countdown-init.js"></script>
+	<!-- Complete days elapsed since the wedding instant -->
+	<script src="js/days-since.js?v=20260920"></script>
 
 	<!-- Main theme script (FH5CO template behaviours) -->
-	<script src="js/main.js"></script>
+	<script src="js/main.js?v=20260920"></script>
 
 	<!-- Language switcher (shows/hides .lang-content blocks based on EN/IT toggle) -->
 	<script src="js/language-switcher.js"></script>
 
-	<!-- Galleries (binds Magnific Popup groups to the gallery-XXXX classes) -->
-	<script src="js/galleries.js"></script>
+	<!-- Galleries (accessible fullscreen viewer for gallery-XXXX groups) -->
+	<script src="js/galleries.js?v=20260920-2"></script>
 
-	<!-- Password gate (overlay show/hide + sessionStorage + scroll lock) -->
+	<!-- Password gate (overlay show/hide + localStorage + scroll lock) -->
 	<script src="js/password-gate.js"></script>
 
 	</body>

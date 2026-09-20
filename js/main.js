@@ -141,21 +141,6 @@
 	};
 
 
-	var testimonialCarousel = function(){
-		var owl = $('.owl-carousel-fullwidth');
-		owl.owlCarousel({
-			items: 1,
-			loop: true,
-			margin: 0,
-			responsiveClass: true,
-			nav: false,
-			dots: true,
-			smartSpeed: 800,
-			autoHeight: true,
-		});
-	};
-
-
 	var goToTop = function() {
 
 		$('.js-gotop').on('click', function(event){
@@ -188,24 +173,32 @@
 		$(".fh5co-loader").fadeOut("slow");
 	};
 
-	var counter = function() {
-		$('.js-counter').countTo({
-			 formatter: function (value, options) {
-	      return value.toFixed(options.decimals);
-	    },
-		});
-	};
+	// Defer the full-resolution gallery cover images until the gallery is near.
+	var lazyBackgrounds = function() {
+		var elements = Array.prototype.slice.call(document.querySelectorAll('[data-bg-image]'));
+		if (!elements.length) return;
 
-	var counterWayPoint = function() {
-		if ($('#fh5co-counter').length > 0 ) {
-			$('#fh5co-counter').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
-					$(this.element).addClass('animated');
-				}
-			} , { offset: '90%' } );
+		var load = function(element) {
+			var source = element.getAttribute('data-bg-image');
+			if (!source) return;
+			element.style.backgroundImage = 'url("' + source.replace(/"/g, '\\"') + '")';
+			element.removeAttribute('data-bg-image');
+		};
+
+		if (!('IntersectionObserver' in window)) {
+			elements.forEach(load);
+			return;
 		}
+
+		var observer = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if (!entry.isIntersecting) return;
+				load(entry.target);
+				observer.unobserve(entry.target);
+			});
+		}, { rootMargin: '600px 0px' });
+
+		elements.forEach(function(element) { observer.observe(element); });
 	};
 
 	// Parallax
@@ -215,17 +208,17 @@
 
 	
 	$(function(){
-		mobileMenuOutsideClick();
+		lazyBackgrounds();
+		if ($('.fh5co-nav').length) {
+			mobileMenuOutsideClick();
+			offcanvasMenu();
+			burgerMenu();
+			dropdown();
+		}
 		parallax();
-		offcanvasMenu();
-		burgerMenu();
 		contentWayPoint();
-		dropdown();
-		testimonialCarousel();
 		goToTop();
 		loaderPage();
-		counter();
-		counterWayPoint();
 	});
 
 
@@ -234,19 +227,34 @@
 // --- Info modals (open/close) ---
 (function(){
 	var lastScrollY = 0;
-	var supportsFixed = true;
+	var lastFocused = null;
+
+	function setBackgroundInert(inert){
+		var page = document.getElementById('page');
+		var languageToggle = document.querySelector('.lang-toggle-wrap');
+		[page, languageToggle].forEach(function(element){
+			if(!element) return;
+			if(inert) element.setAttribute('aria-hidden', 'true');
+			else element.removeAttribute('aria-hidden');
+			if('inert' in element) element.inert = inert;
+		});
+	}
 	
   function openModal(id){
     var modal = document.getElementById(id);
     if(!modal) return;
+	lastFocused = document.activeElement;
 
     // Remember scroll position and lock background scroll (mobile/webviews)
     lastScrollY = window.scrollY || window.pageYOffset || 0;
     document.body.style.top = (-lastScrollY) + 'px';
     document.body.classList.add('modal-open');
+	setBackgroundInert(true);
 
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
+	var closeButton = modal.querySelector('.fh5co-modal__close');
+	(closeButton || modal.querySelector('.fh5co-modal__panel')).focus();
   }
 
   function closeModal(modal){
@@ -258,7 +266,10 @@
     // Unlock scroll and restore position
     document.body.classList.remove('modal-open');
     document.body.style.top = '';
+	setBackgroundInert(false);
     window.scrollTo(0, lastScrollY);
+	if(lastFocused && document.contains(lastFocused)) lastFocused.focus();
+	lastFocused = null;
   }
 
   // Open on click
@@ -277,9 +288,24 @@
 
   // ESC closes
   document.addEventListener('keydown', function(e){
+	var modal = document.querySelector('.fh5co-modal.is-open');
+	if(!modal) return;
     if(e.key === 'Escape'){
-      var modal = document.querySelector('.fh5co-modal.is-open');
-      if(modal) closeModal(modal);
+	  e.preventDefault();
+	  closeModal(modal);
+	  return;
     }
+	if(e.key !== 'Tab') return;
+	var focusable = Array.prototype.slice.call(modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+	if(!focusable.length) return;
+	var first = focusable[0];
+	var last = focusable[focusable.length - 1];
+	if(e.shiftKey && document.activeElement === first){
+		e.preventDefault();
+		last.focus();
+	} else if(!e.shiftKey && document.activeElement === last){
+		e.preventDefault();
+		first.focus();
+	}
   });
 })();

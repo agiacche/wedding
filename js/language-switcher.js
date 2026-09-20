@@ -36,6 +36,7 @@ $(document).ready(function () {
      * checked   = EN
      */
     $('#en-it').prop('checked', lang === 'en');
+	$('#en-it').attr('aria-label', lang === 'en' ? 'Passa all’italiano' : 'Switch to English');
 
     currentLang = lang;
 
@@ -59,17 +60,9 @@ $(document).ready(function () {
 });
 
 
-/**
- * Language toggle visibility / behaviour on scroll
- */
+/** Show the language control once its behaviour is ready. */
 const langButton = document.querySelector('.lang-toggle-wrap');
 
 if (langButton) {
   langButton.classList.add('active');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      langButton.classList.add('active');
-    }
-  });
 }

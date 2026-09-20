@@ -2,8 +2,7 @@
  * Password gate (client-side)
  * - Shows a modal overlay asking for a password.
  * - Locks page scrolling while the overlay is visible.
- * - Stores an "unlocked" flag in sessionStorage, so refreshes in the same tab
- *   won't ask again until the tab/window is closed.
+ * - Stores an "unlocked" flag in localStorage so the same device is remembered.
  *
  * NOTE: This is a light deterrent only (password is visible in source).
  */
@@ -12,18 +11,39 @@
   const PASSWORD = "ale&silvia-2026";
 
   // Cache DOM elements used by the gate
-  const gate   = document.getElementById("password-gate");
+  const gate = document.getElementById("password-gate");
+  if (!gate) return;
   const input  = document.getElementById("password-input");
   const button = document.getElementById("password-submit");
   const error  = gate.querySelector(".password-error");
 
+  if (!input || !button || !error) return;
+
   // Used to restore scroll position when unlocking
   let lastScrollY = 0;
 
-  // If already unlocked for this browser tab/session, remove gate immediately
-  if (localStorage.getItem("site_unlocked") === "1") {
+  let alreadyUnlocked = false;
+  try {
+    alreadyUnlocked = localStorage.getItem("site_unlocked") === "1";
+  } catch (storageError) {
+    // Storage may be unavailable in privacy-restricted browser contexts.
+  }
+
+  // If this device has already been unlocked, remove the gate immediately.
+  if (alreadyUnlocked) {
     gate.remove();
     return;
+  }
+
+  function setBackgroundInert(inert) {
+    const page = document.getElementById("page");
+    const languageToggle = document.querySelector(".lang-toggle-wrap");
+    [page, languageToggle].forEach(function (element) {
+      if (!element) return;
+      if (inert) element.setAttribute("aria-hidden", "true");
+      else element.removeAttribute("aria-hidden");
+      if ("inert" in element) element.inert = inert;
+    });
   }
 
   /**
@@ -53,11 +73,12 @@
    */
   function showGate() {
     lockScroll();
+    setBackgroundInert(true);
     gate.setAttribute("aria-hidden", "false");
 
     requestAnimationFrame(() => {
       gate.classList.add("is-visible");
-      input.focus();
+	  requestAnimationFrame(() => input.focus({ preventScroll: true }));
     });
   }
 
@@ -74,6 +95,7 @@
     // After transition ends, unlock + remove
     setTimeout(() => {
       unlockScroll();
+      setBackgroundInert(false);
       gate.remove();
     }, 300); // should be slightly > CSS transition duration (e.g. 0.28s)
   }
@@ -85,7 +107,11 @@
    */
   function checkPassword() {
     if (input.value === PASSWORD) {
-      localStorage.setItem("site_unlocked", "1");
+      try {
+        localStorage.setItem("site_unlocked", "1");
+      } catch (storageError) {
+        // Unlock the current visit even if permanent storage is unavailable.
+      }
       hideGate();
     } else {
       error.style.display = "block";
@@ -100,6 +126,24 @@
   // Pressing Enter in the input submits password
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") checkPassword();
+  });
+
+  input.addEventListener("input", function () {
+    error.style.display = "none";
+  });
+
+  gate.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    const focusable = [input, button];
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   // Start: show the gate immediately on page load
